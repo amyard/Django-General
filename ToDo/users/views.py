@@ -5,8 +5,6 @@ from django.views import View
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib import messages
 
-
-
 from .forms import LoginForm, RegistrationForm
 
 

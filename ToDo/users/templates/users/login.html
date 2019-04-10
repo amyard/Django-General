@@ -50,6 +50,10 @@
 
 		<input class="btn btn-primary pl-4 pr-4" type="submit" value="Sign In">
 		<a href="{% url 'todo:base-view' %}" id="cancel" name="cancel" class="btn btn-danger">Cancel</a>
+
+			<small class = 'text-muted ml-2'>
+					<a href="{% url 'password_reset' %}">Forgot Password?</a>
+			</small>
 		</form>
 
 
@@ -69,7 +73,11 @@
 		</div>
 
 		<br>
-		<p class = 'text-center'>If you don't have an account, use <a href='{% url "users:signup" %}'>Registration form</a>. </p>
+	<div class = 'border-top pt-3'>
+			<small class = 'text-muted'>
+				Need an account? <a href="{% url 'users:signup' %}" class = 'ml-2'>Sign Up Now</a>
+			</small>
+	</div>
 
 </div>
 

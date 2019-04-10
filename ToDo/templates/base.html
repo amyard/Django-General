@@ -35,7 +35,7 @@
 
 <header class="site-header">
 	<nav class="navbar head-color">
-        <a class="navbar-brand" href=""><b>TODO App</b></a>
+        <a class="navbar-brand" href="{% url 'todo:base-view' %}"><b>TODO App</b></a>
 
 		<div class = 'd-inline'>
             {% if user.is_authenticated or user.is_active %}

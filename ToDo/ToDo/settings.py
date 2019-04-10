@@ -135,3 +135,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'delme15547emled@gmail.com'
 EMAIL_HOST_PASSWORD = 'Q2fa56re#q'
 EMAIL_PORT = 587
+
+
+LOGIN_REDIRECT_URL = 'todo:base-view'
+LOGIN_URL = 'users:login-view'
