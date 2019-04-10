@@ -17,10 +17,6 @@ body hr {
 }
 
 
-
-
-
-
 /* Main Page */
 
 .head-color {
@@ -36,6 +32,18 @@ body hr {
 .icons-color:hover {
     color: red;
 }
+
+.delete-account {
+    color: red;
+    cursor: pointer;
+}
+
+.delete-account:hover {
+    color: #B000FF;
+}
+
+
+
 
 /* LOGIN */
 body .log-form {

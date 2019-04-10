@@ -58,6 +58,8 @@ from django.core.mail import EmailMessage
 from .forms import RegistrationForm
 from .tokens import account_activation_token
 
+
+
 User = get_user_model()
 
 def signup(request):
@@ -102,28 +104,16 @@ def activate(request, uidb64, token):
 
 
 
+######################################################################################
+#   DELETE USER ACCOUNT WITH MODAL
+######################################################################################
 
-# class RegistrationView(View):
-# 	template_name = 'users/registration.html'
-# 	form = RegistrationForm
-# 	message_send = 'You have registered account.'
-#
-# 	def get(self, request, *args, **kwargs):
-# 		form = self.form
-# 		context = {'form': form}
-# 		return render(self.request, self.template_name, context)
-#
-# 	def post(self, request, *args, **kwargs):
-# 		form = self.form(request.POST or None)
-# 		if form.is_valid():
-# 			new_user = form.save(commit=False)
-# 			username = form.cleaned_data['username']
-# 			password = form.cleaned_data['password']
-# 			new_user.set_password(password)
-# 			password_check = form.cleaned_data['password_check']
-# 			new_user.save()
-# 			messages.success(self.request, self.message_send)
-#
-# 			return HttpResponseRedirect('../login')
-# 		context = {'form': form}
-# 		return render(self.request, self.template_name, context)
+from bootstrap_modal_forms.generic import BSModalDeleteView
+from django.urls import reverse_lazy
+
+
+class UserAccountDeleteView(BSModalDeleteView):
+    model = User
+    template_name = 'users/actions/user-account-delete.html'
+    success_message = 'Success: User Account was deleted.'
+    success_url = reverse_lazy('todo:base-view')

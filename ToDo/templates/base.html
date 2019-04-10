@@ -39,10 +39,13 @@
 
 		<div class = 'd-inline'>
             {% if user.is_authenticated or user.is_active %}
-		        <a href="{% url 'users:logout-view' %}"><i class="fas fa-sign-out-alt fa-2x mr-3 icons-color"></i></a>
+
+                <i class="delete-account fas fa-trash-restore-alt fa-2x mr-5" data-id="{% url 'users:delete-user-account' user.pk %}" title="Delete Account?"></i>
+
+		        <a href="{% url 'users:logout-view' %}"><i class="fas fa-sign-out-alt fa-2x mr-3 icons-color" title="Log Out"></i></a>
             {% else %}
-                <a href="{% url 'users:login-view' %}"><i class="fas fa-sign-in-alt fa-2x mr-4 icons-color"></i></a>
-                <a href = '{% url "users:signup" %}'><i class="fas fa-user-plus fa-2x mr-3 icons-color"></i></a>
+                <a href="{% url 'users:login-view' %}"><i class="fas fa-sign-in-alt fa-2x mr-4 icons-color" title="Log In"></i></a>
+                <a href = '{% url "users:signup" %}'><i class="fas fa-user-plus fa-2x mr-3 icons-color" title="Registration"></i></a>
             {% endif %}
 		</div>
 
@@ -57,6 +60,15 @@
 		</div>
 	{% endfor %}
 {% endif %}
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
 
 
 
@@ -79,6 +91,25 @@
 
 
 {% block scripts %}
+
+
+<script type="text/javascript">
+    $(function () {
+
+      // Delete user buttons
+      $(".delete-account").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      })
+
+      // Hide message
+      $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+        $(".alert").slideUp(500);
+      });
+
+    });
+</script>
+
+
 {% endblock %}
 
 </body>

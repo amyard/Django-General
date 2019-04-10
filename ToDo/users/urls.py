@@ -18,6 +18,9 @@ urlpatterns = [
     path('signup/', signup, name='signup'),
     path('activate/<uidb64>/<token>/', activate, name='activate'),
 
+    # delete user account
+    path('delete/<int:pk>', UserAccountDeleteView.as_view(), name='delete-user-account'),
+
     # reset password
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/actions/password_reset.html',
                                                                  email_template_name='users/actions/password_reset_email.html',
