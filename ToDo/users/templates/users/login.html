@@ -2,12 +2,18 @@
 {% load crispy_forms_tags %}
 
 
+
+
 {% block title %}
 	Sign In - {{ block.super }}
 {% endblock %}
 
 
 {% block content %}
+
+
+{% load socialaccount %}
+{% providers_media_js %}
 
 
 <div class="container mt-5 log-form">
@@ -68,6 +74,9 @@
 				</button>
 				<button class="btn btn-primary mb-2">
 					<a href="">Login with Instagram</a><br>
+				</button>
+				<button class="btn mb-2" style="background-color:#3b5998;">
+					<a href="{% provider_login_url 'facebook' method='oauth2' %}">Login with Facebook</a><br>
 				</button>
 			</div>
 		</div>

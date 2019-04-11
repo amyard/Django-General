@@ -9,4 +9,5 @@ pytz==2018.4
 SQLAlchemy==1.2.7
 django-bootstrap-modal-forms==1.4.1
 django-widget-tweaks==1.4.2
+django-allauth==0.39.1
 
