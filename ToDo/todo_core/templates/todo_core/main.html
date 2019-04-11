@@ -5,13 +5,18 @@
 {% endblock %}
 
 
-{% block sidebar %}
 
 <div class="modal fade" tabindex="-1" role="dialog" id="modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content"></div>
   </div>
 </div>
+
+
+
+{% block content %}
+
+
 
 
 <div class="content-section mt-5">
@@ -29,10 +34,12 @@
 			</ul>
 
 			<br>
-			<p class = 'add-category33'>+Add category</p>
+			<a href ='' class='add-project' data-id="{% url 'todo:create-project' %}">+Add category</a>
+			<br><br>
 
 		</div>
 	</div>
+
 {% endblock %}
 
 
@@ -43,6 +50,11 @@
 
 <script type="text/javascript">
     $(function () {
+
+
+      $(".add-project").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      })
 
       // Delete user buttons
       $(".delete-account").each(function () {

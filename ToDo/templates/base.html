@@ -72,25 +72,33 @@
 
 
 
-{% block sidebar %}
-{% endblock %}
-
 
 {% block content %}
 {% endblock %}
 
 
-      <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-      <script src="{% static 'js/popper.min.js' %}"></script>
-      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+      <script src="{% static 'assets/js/popper.min.js' %}"></script>
+      <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
 
 
       <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
       <!-- You can alternatively load the minified version -->
       <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
 
-
 {% block scripts %}
+
+<script type="text/javascript">
+    $(function () {
+
+      // Hide message
+      $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+        $(".alert").slideUp(500);
+      });
+
+    });
+</script>
+
 {% endblock %}
 
 </body>

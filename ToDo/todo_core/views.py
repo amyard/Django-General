@@ -4,6 +4,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 
 from .models import Project
+from .forms import ProjectForm
+
+from django.urls import reverse_lazy
+from bootstrap_modal_forms.generic import BSModalCreateView
+
 
 
 # @login_required(login_url="/accounts/login/")
@@ -25,3 +30,10 @@ class MainPageListView(LoginRequiredMixin, ListView):
 
 
 
+
+
+class ProjectCreateView(BSModalCreateView):
+    template_name = 'todo_core/actions/category-create.html'
+    form_class = ProjectForm
+    success_message = 'Success: Project was created.'
+    success_url = reverse_lazy('todo:base-view')

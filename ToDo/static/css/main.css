@@ -47,12 +47,12 @@ body header .head-color {
 
 
 /* Left side bar */
-.add-category {
+.add-project {
     color: red;
     font-weight: bold;
 }
 
-.add-category:hover {
+.add-project:hover {
     text-decoration: none;
     color: red;
     cursor:pointer;
