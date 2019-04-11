@@ -5,11 +5,57 @@
 {% endblock %}
 
 
+{% block sidebar %}
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
 
 
-{% block content %}
+<div class="content-section mt-5">
+		<div class = 'sidebar-content'>
+			<h5 class = 'text-center mt-3'>Calendar</h5>
+			<br><br><hr>
 
-    <h2> {{ info }} </h2>
+			<h5 class = 'text-center mt-3'>Projects:</h5>
+			<ul class="list-group mb-3">
+				{% for project in projects %}
+					<li class="list-group-item list-group-item-light">
+						<a href="">{{ project.title }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+
+			<br>
+			<p class = 'add-category33'>+Add category</p>
+
+		</div>
+	</div>
+{% endblock %}
+
+
+
+
+{% block scripts %}
+
+
+<script type="text/javascript">
+    $(function () {
+
+      // Delete user buttons
+      $(".delete-account").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      })
+
+      // Hide message
+      $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+        $(".alert").slideUp(500);
+      });
+
+    });
+</script>
 
 
 {% endblock %}

@@ -1,25 +1,26 @@
 
+
 body .container,
 body .row {
-	border: 0.5px solid #007BFF;
-	box-shadow: 0px 0px 7px grey;
-	padding: 2%;
-	width: 100%;
+  border: 0.5px solid #007BFF;
+  box-shadow: 0px 0px 7px grey;
+  padding: 2%;
+  width: 100%;
 }
 
 body .container:hover,
 body .row:hover {
-	box-shadow: 0px 0px 10px #007BFF;
+  box-shadow: 0px 0px 10px #007BFF;
 }
 
 body hr {
-	border-color: #007BFF;
+  border-color: #007BFF;
 }
 
 
 /* Main Page */
 
-.head-color {
+body header .head-color {
     /*background-color: #B8DAFF;*/
     background-color: #9FCDFF;
 }
@@ -42,6 +43,34 @@ body hr {
     color: #B000FF;
 }
 
+
+
+
+/* Left side bar */
+.add-category {
+    color: red;
+    font-weight: bold;
+}
+
+.add-category:hover {
+    text-decoration: none;
+    color: red;
+    cursor:pointer;
+}
+
+
+body .content-section {
+  border: 0.5px solid #007BFF;
+  box-shadow: 0px 0px 7px grey;
+  width: 20%;
+  margin-left: 3%;
+  float: left;
+}
+
+.sidebar-content {
+  width:  90%;
+  margin-left: 5%;
+}
 
 
 
