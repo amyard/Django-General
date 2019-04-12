@@ -9,12 +9,6 @@ from django.urls import reverse_lazy
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalDeleteView, BSModalUpdateView
 
 
-
-#############################################################################################
-##    CATEGORY VIEWS
-#############################################################################################
-
-
 class ProjectCreateView(BSModalCreateView):
     template_name = 'projects/actions/category-create.html'
     form_class = ProjectForm

@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include(('core.urls', 'core'))),
 
     path('projects/', include(('projects.urls', 'projects'))),
+    path('tasks/', include(('tasks.urls', 'tasks'))),
     path('accounts/', include(('users.urls', 'users'))),
 
     path('accounts/', include('allauth.urls')),

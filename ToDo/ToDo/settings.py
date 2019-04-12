@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 INSTALLED_APPS = [
     'core',
     'projects',
+    'tasks',
     'crispy_forms',
     'bootstrap_modal_forms',
     'widget_tweaks',

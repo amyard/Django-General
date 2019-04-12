@@ -27,26 +27,23 @@
 				    {% endfor %}
 				{% endif %}
 		</div>
-
-
-
-
 				<div class = 'form-row'>
 					<div class="form-group col-md-8 mb-0" >
 						<label>Title</label>
 						{{ form.title|as_crispy_field }}
-
+						<div class="{% if form.color.errors %} invalid{% endif %}">
+						  {% for error in form.color.errors %}
+						  {% endfor %}
+						</div>
 					</div>
 
                     <div class="form-group col-md-4 mb-0">
 						<label>Color</label>
 						{{ form.color|as_crispy_field }}
-
 						<div class="{% if form.color.errors %} invalid{% endif %}">
 						  {% for error in form.color.errors %}
 						  {% endfor %}
 						</div>
-
 					</div>
 				</div>
 		</form>

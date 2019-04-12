@@ -23,6 +23,50 @@
 
 
 
+<div class = 'container mt-5 mb-5 cont-sidebar-right'>
+
+    <h3 class="text-center mb-3">{{ date }}</h3>
+{% for task in tasks %}
+    <article class="media mb-3 tasks-pos">
+
+        {% if task.priority == 1 %}
+            <div class="media-body" style = 'background-color: #ff6666;'>
+        {% elif task.priority == 0 %}
+            <div class="media-body" style = 'background-color: #ffff66;'>
+        {% else %}
+            <div class="media-body">
+        {% endif %}
+
+			<div class="article-metadata ml-5 mt-2 mr-3">
+				<h4 class="float-left"> {{ task.title }}</h4>
+
+                <div class = 'float-right task-command'>
+                            <button type="button" class="read-book btn btn-sm btn-primary" data-id="" title="Detail">
+                              <span class="fa fa-eye"></span>
+                            </button>
+                            <button type="button" class="update-task btn btn-sm btn-primary mr-1 ml-1" data-id="{% url 'tasks:update-task' task.pk %}" title="Edit">
+                              <span class="fa fa-edit"></span>
+                            </button>
+                            <button type="button" class="delete-task btn btn-sm btn-danger mr-1" data-id="{% url 'tasks:delete-task' task.pk %}" title="Delete">
+                              <span class="fa fa-trash"></span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-success" data-id="" title="Done">
+                                <a href="{% url 'tasks:done-task' task.pk %}"><span class="fa fa-check-circle"></span></a>
+                            </button>
+
+                         <i class="fas fa-ellipsis-h fa-2x float-right ml-3"></i>
+                </div>
+				<b class="float-right mt-1 mr-3">  {{ task.project }} </b>
+
+    </article>
+{% endfor %}
+
+    <button type="button" class="add-task btn btn-danger" data-id="{% url 'tasks:create-task' %}"><i class="fas fa-plus mr-2"></i>Create Task</button>
+
+
+
+</div>
+
 
 {% endblock %}
 
@@ -35,27 +79,45 @@
 <script type="text/javascript">
     $(function () {
 
-	//  Create Project
-      $(".add-project").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      })
-
-	// Delete project buttons
-      $(".delete-project").each(function () {
+    // Delete user buttons
+      $(".delete-account").each(function () {
         $(this).modalForm({formURL: $(this).data('id')});
       });
 
 
+	//  Create Project
+      $(".add-project").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+	// Delete project buttons
+      $(".delete-project").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
     // Update project buttons
       $(".update-project").each(function () {
         $(this).modalForm({formURL: $(this).data('id')});
       });
 
 
-    // Delete user buttons
-      $(".delete-account").each(function () {
+
+
+    //  Create Task
+      $(".add-task").each(function () {
         $(this).modalForm({formURL: $(this).data('id')});
       });
+    // Update project buttons
+      $(".update-task").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+    // Delete task buttons
+      $(".delete-task").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+
+
+
+
 
     // Hide message
       $(".alert").fadeTo(3000, 500).slideUp(500, function(){

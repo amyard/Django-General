@@ -6,7 +6,7 @@
   {% csrf_token %}
 
   <div class="modal-header">
-    <h3 class="modal-title">Create Project</h3>
+    <h3 class="modal-title">Create Task</h3>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -38,14 +38,46 @@
 					</div>
 
                     <div class="form-group col-md-4 mb-0">
-						<label>Color</label>
-						{{ form.color|as_crispy_field }}
-						<div class="{% if form.color.errors %} invalid{% endif %}">
-						  {% for error in form.color.errors %}
+						<label>Timestamp</label>
+						{{ form.timestamp|as_crispy_field }}
+						<div class="{% if form.timestamp.errors %} invalid{% endif %}">
+						  {% for error in form.timestamp.errors %}
 						  {% endfor %}
 						</div>
 					</div>
 				</div>
+
+				<div class = 'form-row'>
+					<div class="form-group col-md-6 mb-0">
+						<label>Project</label>
+						{{ form.project|as_crispy_field }}
+						<div class="{% if form.project.errors %} invalid{% endif %}">
+						  {% for error in form.project.errors %}
+						  {% endfor %}
+						</div>
+					</div>
+
+					<div class="form-group col-md-6 mb-0">
+						<label>Priority</label>
+						{{ form.priority|as_crispy_field }}
+						<div class="{% if form.priority.errors %} invalid{% endif %}">
+						  {% for error in form.priority.errors %}
+						  {% endfor %}
+						</div>
+					</div>
+				</div>
+
+				<div class = 'form-row'>
+					<div class="form-group col-md-12 mb-0" >
+						<label>Description</label>
+						{{ form.description|as_crispy_field }}
+						<div class="{% if form.description.errors %} invalid{% endif %}">
+						  {% for error in form.description.errors %}
+						  {% endfor %}
+						</div>
+					</div>
+				</div>
+
 		</form>
 
   <div class="modal-footer">
