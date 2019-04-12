@@ -2,7 +2,7 @@
 
 
 
-<form method="POST" enctype = 'multipart/form-data'>
+<form method="post" action="" enctype = 'multipart/form-data'>
   {% csrf_token %}
 
   <div class="modal-header">
@@ -15,34 +15,38 @@
   <div class="modal-body">
 
     <form class="form-signin" action = '' method="POST">
+		{% csrf_token %}
 
+
+		<div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
 				{% if form.errors %}
-				    {% for field in form %}
-				        {% for error in field.errors %}
-				            <div class="alert alert-danger">
-				                <strong>{{ error|escape }}</strong>
-				            </div>
-				        {% endfor %}
-				    {% endfor %}
 				    {% for error in form.non_field_errors %}
 				        <div class="alert alert-danger">
 				            <strong>{{ error|escape }}</strong>
 				        </div>
 				    {% endfor %}
 				{% endif %}
+		</div>
 
-				{% csrf_token %}
+
 
 
 				<div class = 'form-row'>
 					<div class="form-group col-md-8 mb-0" >
 						<label>Title</label>
 						{{ form.title|as_crispy_field }}
+
 					</div>
 
                     <div class="form-group col-md-4 mb-0">
 						<label>Color</label>
 						{{ form.color|as_crispy_field }}
+
+						<div class="{% if form.color.errors %} invalid{% endif %}">
+						  {% for error in form.color.errors %}
+						  {% endfor %}
+						</div>
+
 					</div>
 				</div>
 		</form>

@@ -35,12 +35,12 @@
 
 <header class="site-header">
 	<nav class="navbar head-color">
-        <a class="navbar-brand" href="{% url 'todo:base-view' %}"><b>TODO App</b></a>
+        <a class="navbar-brand" href="{% url 'core:base-view' %}"><b>TODO App</b></a>
 
 		<div class = 'd-inline'>
             {% if user.is_authenticated or user.is_active %}
 
-                <i class="delete-account fas fa-trash-restore-alt fa-2x mr-5" data-id="{% url 'users:delete-user-account' user.pk %}" title="Delete Account?"></i>
+                <i class="delete-account fas fa-user-minus fa-2x mr-5" data-id="{% url 'users:delete-user-account' user.pk %}" title="Delete Account?"></i>
 
 		        <a href="{% url 'users:logout-view' %}"><i class="fas fa-sign-out-alt fa-2x mr-3 icons-color" title="Log Out"></i></a>
             {% else %}

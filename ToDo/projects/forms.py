@@ -18,15 +18,18 @@ class ProjectForm(BSModalForm):
         super(ProjectForm, self).__init__(*args, **kwargs)
 
 
-    def clean(self):
+    def clean_title(self):
         title = self.cleaned_data['title']
-        color = self.cleaned_data['color']
-
         if Project.objects.filter(title=title, user = self.user).exists():
             raise forms.ValidationError('You cann\'t use this title again.')
+        return title
 
+
+    def clean_color(self):
+        color = self.cleaned_data['color']
         if Project.objects.filter(color=color, user = self.user).exists():
             raise forms.ValidationError('You cann\'t use this color again.')
+        return color
 
 
 

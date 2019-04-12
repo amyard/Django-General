@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Main page - {{ block.super }}
+{% endblock %}
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>
+
+
+
+{% block content %}
+
+
+
+
+{% include 'core/sidebar.html' %}
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block scripts %}
+
+
+<script type="text/javascript">
+    $(function () {
+
+	//  Create Project
+      $(".add-project").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      })
+
+	// Delete project buttons
+      $(".delete-project").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+
+    // Update project buttons
+      $(".update-project").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+
+    // Delete user buttons
+      $(".delete-account").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+      });
+
+    // Hide message
+      $(".alert").fadeTo(3000, 500).slideUp(500, function(){
+        $(".alert").slideUp(500);
+      });
+
+    });
+</script>
+
+
+{% endblock %}

@@ -31,7 +31,8 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'todo_core',
+    'core',
+    'projects',
     'crispy_forms',
     'bootstrap_modal_forms',
     'widget_tweaks',
