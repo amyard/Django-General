@@ -53,7 +53,7 @@ body header .head-color {
 }
 
 .add-project:hover {
-    text-decoration: none;
+    text-decoration: underline;
     color: red;
     cursor:pointer;
 }
@@ -70,6 +70,47 @@ body .content-section {
 .sidebar-content {
   width:  90%;
   margin-left: 5%;
+}
+
+
+
+.circle {
+  width: 9%;
+  height: 100%;
+  border-radius: 50%;
+  background: #000;
+  float: left;
+  margin: 0px 10px 0px -2px;
+}
+
+body .actions-sidebar {
+    positions: absolute;
+    float: right;
+    color: red;
+    display: none;
+    list-style: none;
+}
+
+.dropdown {
+    display:none;
+}
+
+
+ul li:hover .dropdown {
+    display:block;
+}
+
+.dropdown-menu {
+    min-width: 85px !important;
+}
+
+.dropdown-menu li:hover {
+    background-color: #007BFF;
+    color: white;
+}
+.dropdown-menu li:hover a {
+    color: white;
+    text-decoration: none;
 }
 
 

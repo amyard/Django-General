@@ -2,11 +2,12 @@
 
 
 
-<form method="POST" enctype = 'multipart/form-data'>
+
+<form method="post" action="">
   {% csrf_token %}
 
   <div class="modal-header">
-    <h3 class="modal-title">Create Project</h3>
+    <h3 class="modal-title">Update Project</h3>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -47,8 +48,11 @@
 				</div>
 		</form>
 
+
+  </div>
+
   <div class="modal-footer">
-    <button type="button" class="submit-btn btn btn-primary">Create</button>
+    <button type="button" class="submit-btn btn btn-primary">Update</button>
     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
   </div>
 
