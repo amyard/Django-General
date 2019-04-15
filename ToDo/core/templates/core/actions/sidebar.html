@@ -1,7 +1,15 @@
     <div class="content-section mt-5 sidebar-left">
 		<div class = 'sidebar-content'>
 			<h5 class = 'text-center mt-3'>Calendar</h5>
-			<br><br><hr>
+			<ul class="list-group mb-3">
+					<li class="list-group-item list-group-item-light">
+						<a href="{% url 'core:base-view' %}">Today</a>
+					</li>
+					<li class="list-group-item list-group-item-light">
+						<a href="{% url 'core:next-week' %}">Next 7 days</a>
+					</li>
+			</ul>
+			<hr>
 
 			<h5 class = 'text-center mt-3'>Projects:</h5>
 			<ul class="list-group mb-3">

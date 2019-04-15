@@ -117,6 +117,21 @@ ul li:hover .dropdown {
     text-decoration: none;
 }
 
+#exTab2 h3 {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+
+.nav-tabs > li {
+    padding-right: 3%;
+    font-size: 1.1em;
+}
+
+body .nav-tabs .active {
+    color: red;
+    font-weight: bold;
+}
 
 
 

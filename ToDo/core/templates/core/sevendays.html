@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Main page - {{ block.super }}
+    Next Seven Days - {{ block.super }}
 {% endblock %}
 
 
@@ -25,17 +25,41 @@
 
 <div class = 'container mt-5 mb-5 cont-sidebar-right'>
 
-    <h3 class="text-center mb-3">{{ date }}</h3>
+<div id="exTab2">
+        <ul class="nav nav-tabs">
+            {% for date in dates %}
+                {% if forloop.first %}
+                    <li><a  href="#{{ forloop.counter }}" data-toggle="tab" class="active">{{ date }}</a></li>
+                {% else %}
+			        <li><a  href="#{{ forloop.counter }}" data-toggle="tab">{{ date }}</a></li>
+                {% endif %}
+            {% endfor %}
+		</ul>
 
-{% for task in tasks %}
+        <div class="tab-content ">
+            {% for date in dates %}
+            {% if forloop.first %}
+                <div class="tab-pane active" id="{{ forloop.counter }}">
+            {% else %}
+                <div class="tab-pane" id="{{ forloop.counter }}">
+            {% endif %}
+                {% for task in tasks %}
+                    {% if task.timestamp|date:'Y-m-d' == date %}
 
-    {% include 'core/actions/content.html' %}
-
-{% endfor %}
-
-    <button type="button" class="add-task btn btn-danger" data-id="{% url 'tasks:create-task' %}"><i class="fas fa-plus mr-2"></i>Create Task</button>
+                        <h3 class="text-center mb-3">{{ task.timestamp|date:'Y-m-d' }}</h3>
 
 
+                        {% include 'core/actions/content.html' %}
+
+
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+  </div>
+
+    <button type="button" class="add-task btn btn-danger mt-3" data-id="{% url 'tasks:create-task' %}"><i class="fas fa-plus mr-2"></i>Create Task</button>
 
 </div>
 
