@@ -16,7 +16,15 @@
 				{% for project in projects %}
 					<li class="list-group-item list-group-item-light">
 						<div class="circle" style = 'background-color: {{ project.color|lower }}'></div>
-						<a href="">{{ project.title }}</a>
+						<a href="">{{ project.title }}
+
+							{% for count in count_tasks %}
+								{% if project.title ==  count.title %}
+									({{count.count}})
+								{% endif %}
+							{% endfor %}
+
+						</a>
 
 							<div class="float-right">
 								<ul class="nav navbar-nav">
@@ -24,7 +32,15 @@
 											<a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-v fa-lg"></i></a>
 												<ul class="dropdown-menu w-100">
 													<li><a href="#" class="update-project ml-3" data-id="{% url 'projects:update-project' project.pk %}">Update</a></li>
-													<li><a href="#" class="delete-project ml-3" data-id="{% url 'projects:delete-project' project.pk %}">Delete</a></li>
+
+													{% for count in count_tasks %}
+														{% if project.title ==  count.title and count.count == 0 %}
+															<li><a href="#" class="delete-project ml-3" data-id="{% url 'projects:delete-project' project.pk %}">Delete</a></li>
+														{% elif project.title ==  count.title %}
+															<li><a href="#" class="ml-3 can-delete">Delete</a></li>
+														{% endif %}
+													{% endfor %}
+
 												</ul>
 											</li>
 										</ul>
@@ -38,4 +54,5 @@
 			<br>
 
 		</div>
+
 	</div>
