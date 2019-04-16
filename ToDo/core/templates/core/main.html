@@ -47,57 +47,6 @@
 
 {% block scripts %}
 
-
-<script type="text/javascript">
-    $(function () {
-
-    // Delete user buttons
-      $(".delete-account").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-
-
-	//  Create Project
-      $(".add-project").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-	// Delete project buttons
-      $(".delete-project").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-    // Update project buttons
-      $(".update-project").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-
-
-
-
-    //  Create Task
-      $(".add-task").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-    // Update project buttons
-      $(".update-task").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-    // Delete task buttons
-      $(".delete-task").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-
-
-
-
-
-
-    // Hide message
-      $(".alert").fadeTo(3000, 500).slideUp(500, function(){
-        $(".alert").slideUp(500);
-      });
-
-    });
-</script>
-
+    {% include 'core/actions/here-scripts.html' %}
 
 {% endblock %}

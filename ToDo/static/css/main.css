@@ -49,20 +49,6 @@ body header .head-color {
 /* Left side bar */
 
 
-
-/*
-.add-project {
-    color: red;
-    font-weight: bold;
-}
-
-.add-project:hover {
-    text-decoration: underline;
-    color: red;
-    cursor:pointer;
-}
-*/
-
 body .sidebar-left {
   border: 0.5px solid #007BFF;
   box-shadow: 0px 0px 7px grey;
@@ -129,8 +115,11 @@ ul li:hover .dropdown {
 }
 
 body .nav-tabs .active {
-    color: red;
+    color: white;
     font-weight: bold;
+    background-color: #007BFF;
+    padding: 7px 10px;
+    border-radius: 5px;
 }
 
 

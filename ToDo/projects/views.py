@@ -13,7 +13,6 @@ class ProjectCreateView(BSModalCreateView):
     template_name = 'projects/actions/category-create.html'
     form_class = ProjectForm
     success_message = 'Success: Project was created.'
-    success_url = reverse_lazy('core:base-view')
 
 
     def get_form_kwargs(self, *args, **kwargs):
@@ -25,6 +24,9 @@ class ProjectCreateView(BSModalCreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(ProjectCreateView, self).form_valid(form)
+
+    def get_success_url(self, **kwargs):
+        return self.request.META.get('HTTP_REFERER')
 
 
 
@@ -41,10 +43,12 @@ class ProjectUpdateView(BSModalUpdateView):
     template_name = 'projects/actions/category-update.html'
     form_class = ProjectUpdateForm
     success_message = 'Success: Project was updated.'
-    success_url = reverse_lazy('core:base-view')
 
     def get_form_kwargs(self, *args, **kwargs):
         kwargs = super(ProjectUpdateView, self).get_form_kwargs(*args, **kwargs)
         kwargs['user'] = self.request.user
         kwargs['pk'] = self.kwargs['pk']
         return kwargs
+
+    def get_success_url(self, **kwargs):
+        return self.request.META.get('HTTP_REFERER')

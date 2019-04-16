@@ -29,9 +29,9 @@
         <ul class="nav nav-tabs">
             {% for date in dates %}
                 {% if forloop.first %}
-                    <li><a  href="#{{ forloop.counter }}" data-toggle="tab" class="active">{{ date }}</a></li>
+                    <li class ='mb-2'><a  href="#{{ forloop.counter }}" data-toggle="tab" class="active">{{ date }}</a></li>
                 {% else %}
-			        <li><a  href="#{{ forloop.counter }}" data-toggle="tab">{{ date }}</a></li>
+			        <li class ='mb-2'><a  href="#{{ forloop.counter }}" data-toggle="tab">{{ date }}</a></li>
                 {% endif %}
             {% endfor %}
 		</ul>
@@ -45,9 +45,6 @@
             {% endif %}
                 {% for task in tasks %}
                     {% if task.timestamp|date:'Y-m-d' == date %}
-
-                        <h3 class="text-center mb-3">{{ task.timestamp|date:'Y-m-d' }}</h3>
-
 
                         {% include 'core/actions/content.html' %}
 
@@ -71,57 +68,6 @@
 
 {% block scripts %}
 
-
-<script type="text/javascript">
-    $(function () {
-
-    // Delete user buttons
-      $(".delete-account").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-
-
-	//  Create Project
-      $(".add-project").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-	// Delete project buttons
-      $(".delete-project").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-    // Update project buttons
-      $(".update-project").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-
-
-
-
-    //  Create Task
-      $(".add-task").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-    // Update project buttons
-      $(".update-task").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-    // Delete task buttons
-      $(".delete-task").each(function () {
-        $(this).modalForm({formURL: $(this).data('id')});
-      });
-
-
-
-
-
-
-    // Hide message
-      $(".alert").fadeTo(3000, 500).slideUp(500, function(){
-        $(".alert").slideUp(500);
-      });
-
-    });
-</script>
-
+    {% include 'core/actions/here-scripts.html' %}
 
 {% endblock %}

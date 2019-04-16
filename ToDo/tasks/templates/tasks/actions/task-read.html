@@ -1,0 +1,33 @@
+{% load widget_tweaks %}
+
+<div class="modal-header">
+  <h3 class="modal-title">Task details</h3>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+
+  <div class="">
+    <b>Date:</b>
+    {{ task.timestamp }}
+  </div>
+  <div class="">
+    <b>Title:</b>
+    {{ task.title }} ({{ task.get_priority_display }} priority).
+  </div>
+  <div class="">
+    <b>Project:</b>
+    {{ task.project }}.
+  </div>
+  <div class="">
+    <b>Short description:</b>
+    {{ task.description }}.
+  </div>
+
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+</div>
