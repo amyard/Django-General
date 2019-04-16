@@ -16,7 +16,7 @@
 				{% for project in projects %}
 					<li class="list-group-item list-group-item-light">
 						<div class="circle" style = 'background-color: {{ project.color|lower }}'></div>
-						<a href="">{{ project.title }}
+						<a href="{% url 'projects:detail-project' project.pk project.title %}">{{ project.title }}
 
 							{% for count in count_tasks %}
 								{% if project.title ==  count.title %}

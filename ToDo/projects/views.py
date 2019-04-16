@@ -1,12 +1,18 @@
 from django.shortcuts import render
-# from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.views.generic import ListView
+from core.mixins import MainPageListMixin
+
 
 from .models import Project
 from .forms import ProjectForm, ProjectUpdateForm
+from tasks.models import Task
 
 from django.urls import reverse_lazy
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalDeleteView, BSModalUpdateView
+from datetime import date
+from django.db.models import Q
+
 
 
 class ProjectCreateView(BSModalCreateView):
@@ -52,3 +58,16 @@ class ProjectUpdateView(BSModalUpdateView):
 
     def get_success_url(self, **kwargs):
         return self.request.META.get('HTTP_REFERER')
+
+
+class ProjectListView(ListView, MainPageListMixin):
+    model = Project
+    template_name = 'projects/detail-projects.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProjectListView, self).get_context_data(*args, **kwargs)
+        ids = self.kwargs.get('pk')
+        context['title'] = self.kwargs.get('title')
+        context['tasks'] = Task.objects.filter(timestamp__gte=date.today(), status=0,project__user=self.request.user, project__id = ids)
+        context['dates'] = Task.objects.filter(timestamp__gte=date.today(), status=0,project__user=self.request.user, project__id = ids).values('timestamp').distinct()
+        return context
