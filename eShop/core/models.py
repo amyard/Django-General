@@ -40,7 +40,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length = 255, unique = True)
     description = models.TextField()
     image = models.ImageField(upload_to = save_image_path, blank = True, default = 'default.png')
-    price = models.DecimalField(max_digits = 2, decimal_places = 2)
+    price = models.DecimalField(decimal_places=2, max_digits=9)
     available = models.BooleanField(default = True)
 
     def __str__(self):

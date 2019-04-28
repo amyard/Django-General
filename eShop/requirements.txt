@@ -8,3 +8,5 @@ psycopg2==2.7.7
 pytz==2018.4
 django-bootstrap-modal-forms==1.4.1
 django-widget-tweaks==1.4.2
+faker==1.0.5
+transliterate==1.10.2
