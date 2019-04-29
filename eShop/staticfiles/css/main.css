@@ -1,0 +1,27 @@
+/* CATEGORY DETAIL */
+
+.list-group { display: inline; }
+
+.path { color: black; }
+
+.path:hover {
+    color:grey;
+    text-decoration: none;
+}
+.path-active:hover { text-decoration: none; }
+
+
+/* MAIN PAGE */
+/* CAROUSEL */
+.slider-img {
+    height: 100%;
+    width: 900px;
+}
+
+.carousel-inner, .carousel-item { height: 450px; }
+
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}

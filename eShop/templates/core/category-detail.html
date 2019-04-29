@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    {{ category.name }} - {{ block.super }}
+{% endblock %}
+
+
+{% block sidebar %}{% endblock %}
+{% block content %}
+
+
+        <div class="col-lg-12 mt-4">
+            <div class="list-group" >
+                <a href="{% url 'base-view' %}" class = 'mr-2 path'>Home</a> > <a href="" class = 'ml-2 path-active'>{{ category.name }}</a>
+            </div>
+          <div class="row mt-3">
+
+          {% for product in products %}
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#" class="mt-2 ml-2 mr-2"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                </h4>
+                <h5>${{ product.price }}</h5>
+                <p class="card-text">{{ product.description|truncatewords:10 }}</p>
+              </div>
+              <div class="card-footer text-center">
+                  <a href="{{ product.get_absolute_url }}" class="btn btn-light"><b>DETAIL</b></a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+            <div class="mt-3">
+			{% if products.has_other_pages %}
+
+
+				{% if products.has_previous %}
+					<a href="?page=1" class = 'btn btn-outline-dark mb-4'>First</a>
+					<a href="?page={{ products.previous_page_number }}" class = 'btn btn-outline-dark mb-4'>Previous</a>
+				{% endif %}
+
+				{% for num in products.paginator.page_range %}
+					{% if products.number == num %}
+						<a href="?page={{ num }}" class = 'btn btn-dark mb-4'>{{ num }}</a>
+					{% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+						<a href="?page={{ num }}" class = 'btn btn-ouline-dark mb-4'>{{ num }}</a>
+					{% endif %}
+				{% endfor %}
+
+				{% if products.has_next %}
+					<a href="?page={{ products.next_page_number }}" class = 'btn btn-outline-dark mb-4'>Next</a>
+					<a href="?page={{ products.paginator.num_pages }}" class = 'btn btn-outline-dark mb-4'>Last</a>
+				{% endif %}
+
+			{% endif %}
+        </div>
+
+        </div>
+{% endblock %}

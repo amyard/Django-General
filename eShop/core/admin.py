@@ -2,12 +2,17 @@ from django.contrib import admin
 from .models import Category, Brand, Product
 
 
+
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
 
+@admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
 
+
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'category', 'brand', 'title','price')
     list_filter = ['category', 'brand', 'available']
@@ -20,7 +25,4 @@ class ProductAdmin(admin.ModelAdmin):
         ('Available', {'fields': ['available']})
     ]
 
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Brand, BrandAdmin)
-admin.site.register(Product, ProductAdmin)
 

@@ -1,16 +1,93 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>eShop Nigga</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+    <title>
+        {% block title %}eShop Nigga {% endblock %}
+    </title>
+
 </head>
+
+
 <body>
 
-<h1>Hallo world</h1>
+
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'base-view' %}">eShop Nigga</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+
+          {% if not request.get_full_path == '/' %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Категории
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for cat in categories %}
+              <a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+              {% endfor %}
+            </div>
+          </li>
+          {% endif %}
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container mt-5">
+
+    <div class="row">
+
+    {% block sidebar %}
+      <div class="col-lg-3">
+          <h1 class="my-4">All categories:</h1>
+          <div class="list-group">
+              {% for cat in categories %}
+                  <a href="{{ cat.get_absolute_url }}" class="list-group-item">{{ cat.name }}
+                  {% for count in count_products %}
+                      {% if count.name == cat.name %}
+                          ({{ count.count }})
+                      {% endif %}
+                  {% endfor %}
+                  </a>
+              {% endfor %}
+          </div>
+      </div>
+    {% endblock %}
+
+
+    {% block content %}
+    {% endblock %}
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-3 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; eShop Nigga 2019</p>
+    </div>
+  </footer>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

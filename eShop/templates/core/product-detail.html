@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    {{ product.title }} - {{ block.super }}
+{% endblock %}
+
+{% block sidebar %} {% endblock %}
+
+{% block content %}
+<div class="list-group mt-4" >
+    <a href="{% url 'base-view' %}" class = 'mr-2 path'>Home</a>
+    > <a href="{{ product.category.get_absolute_url }}" class = 'mr-2 ml-2 path'>{{ product.category }}</a>
+    > <a href="{{ product.get_absolute_url }}" class = 'ml-2 path-active'>{{ product.title }}</a>
+</div>
+
+
+<div class="card mt-4 mb-4">
+    <div class ='row'>
+        <div class="col-lg-5 mt-3 ml-2">
+              <img class="card-img-top img-fluid mt-2 mb-2" src="{{ product.image.url }}" alt="">
+        </div>
+
+        <div class="col lg-7 mt-3">
+              <div class="card-body">
+                <h3 class="card-title">{{ product.title }}</h3>
+                <p class="card-text">{{ product.description }}</p>
+                <hr>
+                <h4>Цена: $ {{ product.price }}</h4>
+                <a href="#" class ='btn btn-danger'>Добавить в корзину</a><br>
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                4.0 stars
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
