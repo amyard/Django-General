@@ -25,3 +25,12 @@
 .carousel-control-prev {
     filter: invert(100%);
 }
+
+
+/* MAIN PAGE */
+/* Корзина */
+.cart-header {
+    background-color: white;
+    padding: 0px 10px;
+    border-radius: 15px;
+}

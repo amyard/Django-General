@@ -7,6 +7,9 @@ from django.core.paginator import Paginator
 from product.models import Category, Brand, Product
 from product.mixins import SideBarMixin
 
+from cart.forms import CartAddProductForm
+
+
 
 
 
@@ -46,9 +49,10 @@ class ProductDetailView(SideBarMixin, DetailView):
     model = Product
     context_object_name = 'product'
     slug_url_kwarg = 'product_slug'
+    form = CartAddProductForm
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
         context['product'] = self.get_object
-
+        context['cart_product_form'] = self.form
         return context

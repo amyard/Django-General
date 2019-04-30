@@ -29,7 +29,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{% url 'product:base-view' %}">Home <span class="sr-only">(current)</span></a>
           </li>
 
           {% if not request.get_full_path == '/' %}
@@ -45,10 +45,20 @@
           </li>
           {% endif %}
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <div id="subheader">
+          <div class="cart cart-header">
+            {% with total_items=cart|length %}
+              {% if cart|length > 0 %}
+                Ваша Корзина:
+                <a href="{% url 'cart:cart_detail' %}">
+                  {{ total_items }} item{{ total_items|pluralize }}, $ {{ cart.get_total_price }}
+                </a>
+              {% else %}
+                Корзина пустая.
+              {% endif %}
+            {% endwith %}
+          </div>
+        </div>
       </div>
     </div>
   </nav>

@@ -24,12 +24,15 @@
         <div class="col lg-7 mt-3">
               <div class="card-body">
                 <h3 class="card-title">{{ product.title }}</h3>
-                <p class="card-text">{{ product.description }}</p>
+                <p class="card-text">{{ product.description|linebreaks }}</p>
                 <hr>
                 <h4>Цена: $ {{ product.price }}</h4>
-                <a href="#" class ='btn btn-danger'>Добавить в корзину</a><br>
-                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                4.0 stars
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {% csrf_token %}
+                    {{ cart_product_form }}
+                    <input type="submit" value="Добавить в корзину">
+                </form>
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span> 4.0 stars
               </div>
         </div>
     </div>

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Your shopping cart
+{% endblock %}
+
+
+
+{% block content %}
+<h1 class="mt-3">Your shopping cart</h1>
+<table class="table table-bordered table-striped table-hover" style="border: 1px solid black; width: 100%;">
+    <thead class="table-primary">
+        <tr>
+            <th class="text-center">Фото</th>
+            <th class="text-center">Наименование</th>
+            <th class="text-center">Количество</th>
+            <th class="text-center">Удалить</th>
+            <th class="text-center">Цена за шт</th>
+            <th class="text-center">Общая цена</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+            <tr>
+                <td class="text-center">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %}{{ product.image.url }} {% else %}{% static 'default.png' %}{% endif %}" style = 'width: 150px;'>
+                    </a>
+                </td>
+                <td class="text-center">{{ product.title }}</td>
+                <td class="text-center">
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {{ item.update_quantity_form.quantity }}
+                        {{ item.update_quantity_form.update }}
+                        <input type="submit" value="Обновить">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td class="text-center"><a href="{% url 'cart:cart_remove' product_id=product.id %}">Удалить</a></td>
+                <td class="text-center num">$ {{ item.price }}</td>
+                <td class="text-center num">$ {{ item.total_price }}</td>
+            </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="table-primary">
+            <td>Общая цена к оплате:</td>
+            <td colspan="4"></td>
+            <td class="num">$ {{ cart.get_total_price }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="text-right">
+    <a href="{% url 'product:base-view' %}" class="btn btn-outline-primary mr-5">Продолжить покупки</a>
+    <a href="#" class="btn btn-outline-dark">Оплатить</a>
+</p>
+
+
+{% endblock %}
