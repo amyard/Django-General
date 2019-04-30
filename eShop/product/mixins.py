@@ -1,6 +1,6 @@
 from django.views.generic.list import MultipleObjectMixin
 from django.db.models import Count
-from core.models import Category
+from product.models import Category
 
 
 class SideBarMixin(MultipleObjectMixin):

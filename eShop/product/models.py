@@ -36,6 +36,8 @@ class Brand(models.Model):
 
 
 
+
+
 class ProductManager(models.Manager):
     def all(self, *args, **kwargs):
         return super(ProductManager, self).get_queryset().filter(available=True)

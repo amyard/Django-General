@@ -3,7 +3,7 @@ import os, django, random
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eShop.settings')
 django.setup()
 
-from core.models import Product, Brand, Category
+from product.models import Product, Brand, Category
 from django.utils.text import slugify
 from transliterate import translit
 from django.core.files.images import ImageFile

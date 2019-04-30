@@ -4,14 +4,14 @@ from django.db.models import Count
 from django.core.paginator import Paginator
 
 
-from .models import Category, Brand, Product
-from core.mixins import SideBarMixin
+from product.models import Category, Brand, Product
+from product.mixins import SideBarMixin
 
 
 
 
 class BaseListView(SideBarMixin, ListView):
-    template_name = 'core/main.html'
+    template_name = 'product/main.html'
     model = Product
 
     def get_context_data(self, *args, **kwargs):
@@ -23,7 +23,7 @@ class BaseListView(SideBarMixin, ListView):
 
 
 class CategoryDetailView(SideBarMixin, DetailView):
-    template_name = 'core/category-detail.html'
+    template_name = 'product/category-detail.html'
     model = Category
     # context_object_name = 'category'
     slug_url_kwarg = 'category_slug'
@@ -42,7 +42,7 @@ class CategoryDetailView(SideBarMixin, DetailView):
 
 
 class ProductDetailView(SideBarMixin, DetailView):
-    template_name = 'core/product-detail.html'
+    template_name = 'product/product-detail.html'
     model = Product
     context_object_name = 'product'
     slug_url_kwarg = 'product_slug'
