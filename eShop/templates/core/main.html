@@ -2,6 +2,24 @@
 
 
 {% block content %}
+
+<!--  SIDEBAR  -->
+    <div class="col-lg-3">
+          <h1 class="my-4">All categories:</h1>
+          <div class="list-group">
+              {% for cat in categories %}
+                  <a href="{{ cat.get_absolute_url }}" class="list-group-item">{{ cat.name }}
+                  {% for count in count_products %}
+                      {% if count.name == cat.name %}
+                          ({{ count.count }})
+                      {% endif %}
+                  {% endfor %}
+                  </a>
+              {% endfor %}
+          </div>
+      </div>
+
+
     <!-- CAROUSEL -->
 <div class="col-lg-9" xmlns:height="http://www.w3.org/1999/xhtml">
           <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">

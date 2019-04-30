@@ -12,7 +12,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length = 55, unique = True)
 
     def get_absolute_url(self):
-        return reverse('category-detail', kwargs = {'category_slug':self.slug})
+        return reverse('product:category-detail', kwargs = {'category_slug':self.slug})
 
     def __str__(self):
         return self.name
@@ -54,7 +54,7 @@ class Product(models.Model):
     objects = ProductManager()
 
     def get_absolute_url(self):
-        return reverse('product-detail', kwargs = {'category_slug':self.category.slug, 'product_slug': self.slug})
+        return reverse('product:product-detail', kwargs = {'category_slug':self.category.slug, 'product_slug': self.slug})
 
     def __str__(self):
         return self.title

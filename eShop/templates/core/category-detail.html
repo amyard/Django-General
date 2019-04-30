@@ -6,13 +6,12 @@
 {% endblock %}
 
 
-{% block sidebar %}{% endblock %}
 {% block content %}
 
 
         <div class="col-lg-12 mt-4">
             <div class="list-group" >
-                <a href="{% url 'base-view' %}" class = 'mr-2 path'>Home</a> > <a href="" class = 'ml-2 path-active'>{{ category.name }}</a>
+                <a href="{% url 'product:base-view' %}" class = 'mr-2 path'>Home</a> > <a href="" class = 'ml-2 path-active'>{{ category.name }}</a>
             </div>
           <div class="row mt-3">
 

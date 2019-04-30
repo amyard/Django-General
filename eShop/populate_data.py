@@ -36,7 +36,7 @@ def create_product(N, categories, brands):
         product = Product.objects.create(
             category = Category.objects.get(name = categories[numb_for_cat]),
             brand = Brand.objects.get(name = brands[numb_for_brand]),
-            title=f'Product № {i}',
+            title=f'{brands[numb_for_brand]} - {categories[numb_for_cat]} Product № {i}',
             slug=gen_slug(f'Product № {i}'),
             price=random.randint(100, 9999999),
             description = fake.text()

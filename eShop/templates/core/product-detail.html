@@ -5,11 +5,11 @@
     {{ product.title }} - {{ block.super }}
 {% endblock %}
 
-{% block sidebar %} {% endblock %}
+
 
 {% block content %}
 <div class="list-group mt-4" >
-    <a href="{% url 'base-view' %}" class = 'mr-2 path'>Home</a>
+    <a href="{% url 'product:base-view' %}" class = 'mr-2 path'>Home</a>
     > <a href="{{ product.category.get_absolute_url }}" class = 'mr-2 ml-2 path'>{{ product.category }}</a>
     > <a href="{{ product.get_absolute_url }}" class = 'ml-2 path-active'>{{ product.title }}</a>
 </div>

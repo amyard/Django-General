@@ -56,7 +56,7 @@ coverage.xml
 local_settings.py
 .idea
 db.sqlite3
-
+media/*/*/*.jpg
 
 # Flask stuff:
 instance/
