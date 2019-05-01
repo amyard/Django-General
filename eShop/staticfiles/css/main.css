@@ -43,3 +43,16 @@
     padding: 5px 5px;
     box-shadow: 0px 0px 10px #007BFF;
 }
+
+
+/*  PAYMENT TEMPLATE  */
+#card-number,
+#cvv,
+#expiration-date {
+    border: 1px solid blue;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #EFEFEF;
+    margin: 0px 5px;
+    padding-left: 5px;
+}

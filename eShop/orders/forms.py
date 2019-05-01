@@ -31,6 +31,6 @@ class OrderCreateForm(forms.ModelForm):\
                 Column('postal_code', css_class='form-group col-md-2 mb-0'),
                 css_class='form-row'
             ),
-            Submit('submit', 'Sign in')
+            Submit('submit', 'Оплатить')
         )
 
