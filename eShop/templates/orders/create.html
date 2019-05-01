@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Оплатить  - {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+    <h1 class=" mt-3">Оплатить:</h1>
+    <hr>
+    <div class="row">
+
+        <div class="col-sm-6 mb-3">
+            {% crispy form %}
+        </div>
+
+        <div class="col-sm-6">
+            <div class="order-info">
+                <h3 class="text-center">Ваш заказ</h3>
+
+
+                <table class="table table-bordered table-striped table-hover" style="width: 100%;">
+                    <tbody>
+                        {% for item in cart %}
+                            <tr>
+                                <td class="text-center">{{ item.quantity }}x</td>
+                                <td class="text-center">{{ item.product.title }}</td>
+                                <td class="text-center"><span>$ {{ item.total_price }}</span></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <p class="text-right">Общая цена к оплате: <span class="ml-3 mr-1"><b>$ {{ cart.get_total_price }}</b></span></p>
+
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
