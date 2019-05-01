@@ -10,3 +10,5 @@ django-bootstrap-modal-forms==1.4.1
 django-widget-tweaks==1.4.2
 faker==1.0.5
 transliterate==1.10.2
+celery==4.1.0
+braintree==3.45.0

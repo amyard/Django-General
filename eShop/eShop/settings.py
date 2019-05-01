@@ -137,3 +137,29 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 CART_SESSION_ID = 'cart'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'delmetest2019@gmail.com'
+EMAIL_HOST_PASSWORD = 'za12za34'
+EMAIL_PORT = 587
+
+
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'fcfwtvnkw2yznfpn'
+BRAINTREE_PUBLIC_KEY = 'cs29w59r6mhgk5yw'
+BRAINTREE_PRIVATE_KEY = 'f20e6ac2ef66a2fab11ac8afa1cb2c1c'
+
+
+from braintree import Configuration, Environment
+
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
