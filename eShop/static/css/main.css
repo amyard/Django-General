@@ -1,0 +1,62 @@
+/* CATEGORY DETAIL */
+
+.list-group { display: inline; }
+
+.path { color: black; }
+
+.path:hover {
+    color:grey;
+    text-decoration: none;
+}
+.path-active:hover { text-decoration: none; }
+
+
+/* MAIN PAGE */
+/* CAROUSEL */
+.slider-img {
+    height: 100%;
+    width: 900px;
+}
+
+.carousel-inner, .carousel-item { height: 450px; }
+
+
+.carousel-control-next,
+.carousel-control-prev {
+    filter: invert(100%);
+}
+
+
+/* MAIN PAGE */
+/* Корзина */
+.cart-header {
+    background-color: white;
+    padding: 0px 10px;
+    border-radius: 15px;
+}
+
+/* Order template */
+.row { width: 100%; }
+
+.order-info {
+    border: 1px solid grey;
+    padding: 5px 5px;
+    box-shadow: 0px 0px 10px #007BFF;
+}
+
+
+/*  PAYMENT TEMPLATE  */
+#card-number,
+#cvv,
+#expiration-date {
+    border: 1px solid blue;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #EFEFEF;
+    margin: 0px 5px;
+    padding-left: 5px;
+}
+
+
+
+
