@@ -42,8 +42,11 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
+    'users.apps.UsersConfig',
 
     'crispy_forms',
+    'bootstrap_modal_forms',
+    'widget_tweaks',
     'tinymce',
 ]
 
@@ -136,6 +139,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 
 CART_SESSION_ID = 'cart'
