@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Category, Brand, Product
-
+from tinymce.widgets import TinyMCE
+from django.db import models
 
 
 @admin.register(Category)
@@ -24,5 +25,9 @@ class ProductAdmin(admin.ModelAdmin):
         ('Content', {'fields': ['description', 'image']}),
         ('Available', {'fields': ['available']})
     ]
+    formfield_overrides = {
+        models.TextField: {'widget':TinyMCE()}
+    }
+
 
 

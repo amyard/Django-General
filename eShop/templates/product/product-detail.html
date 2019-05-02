@@ -24,7 +24,7 @@
         <div class="col lg-7 mt-3">
               <div class="card-body">
                 <h3 class="card-title">{{ product.title }}</h3>
-                <p class="card-text">{{ product.description|linebreaks }}</p>
+                <p class="card-text">{{ product.description|safe|linebreaks }}</p>
                 <hr>
                 <h4>Цена: $ {{ product.price }}</h4>
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
