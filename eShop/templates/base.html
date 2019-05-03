@@ -63,10 +63,12 @@
 
         <div class = 'd-inline'>
             {% if user.is_authenticated or user.is_active %}
-                <a href="{% url 'users:logout' %}" class="ml-3 icons-a"><i class="fas fa-sign-out-alt fa-lg mr-1 icons-color" title="Log Out"></i>Log Out</a>
+                <a href="{% url 'accounts:logout' %}" class="ml-3 icons-a"><i class="fas fa-sign-out-alt fa-lg mr-1 icons-color" title="Log Out"></i>Выход</a>
             {% else %}
-                <button type="button" class="login-btn btn btn-outline-dark ml-3"><i class="fas fa-sign-in-alt fa-lg mr-1 icons-color-btn" title="Log In"></i>Log In</button>
-                <button type="button" class="signup-btn btn btn-outline-dark ml-3"><i class="fas fa-user-plus fa-lg mr-1 icons-color-btn" title="Registration"></i>Sign Up</button>
+                <a href="{% url 'accounts:login' %}" class="ml-3 icons-a"><i class="fas fa-sign-in-alt fa-lg mr-1 icons-color" title="Log In"></i>Вход</a>
+                <a href="{% url 'accounts:signup' %}" class="ml-3 icons-a"><i class="fas fa-user-plus fa-lg mr-1 icons-color" title="Registration"></i>Регистрация</a>
+<!--                <button type="button" class="login-btn btn btn-outline-dark ml-3"><i class="fas fa-sign-in-alt fa-lg mr-1 icons-color-btn" title="Log In"></i>Log IN</button>-->
+<!--                <button type="button" class="signup-btn btn btn-outline-dark ml-3"><i class="fas fa-user-plus fa-lg mr-1 icons-color-btn" title="Registration"></i>Sign Up</button>-->
             {% endif %}
 		</div>
 
@@ -127,8 +129,6 @@
 
   <script type="text/javascript">
     $(function () {
-
-
 
       // Hide message
       $(".alert").fadeTo(5000, 500).slideUp(500, function(){

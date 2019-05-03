@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+
+
+{% block title %}
+    Вход - {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container mt-5 mb-5 pl-5 pr-5 w-50 login-page">
+	<h3 class = 'text-center mt-3'>Авторизация пользователя:</h3>
+	<hr>
+		<form class="form-signin" action = '' method="POST">
+				{% csrf_token %}
+
+                <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+                  {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger mt-2">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                  {% endfor %}
+                </div>
+
+                {% for field in form %}
+                  <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% render_field field class="form-control" %}
+                    <div class="{% if field.errors %} invalid{% endif %}">
+                      {% for error in field.errors %}
+                        <p class="help-block">
+                            <div class="alert alert-danger mt-2">
+                                <strong>{{ error }}</strong>
+                            </div>
+                        </p>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endfor %}
+
+            <input class="btn btn-primary pl-4 pr-4 mt-3 mb-3" type="submit" value="Войти">
+            <a href="{% url 'product:base-view' %}" id="cancel" name="cancel" class="btn btn-danger mt-3 mb-3">Отмена</a>
+
+            <br>
+            <small class = 'text-muted ml-2'>
+                <a href="">Забыли пароль?</a>
+            </small>
+
+		</form>
+</div>
+
+{% endblock %}
