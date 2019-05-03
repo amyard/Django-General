@@ -144,13 +144,13 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 CART_SESSION_ID = 'cart'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'delmetest2019@gmail.com'
-EMAIL_HOST_PASSWORD = 'za12za34'
+EMAIL_HOST_USER = 'delme15547emled@gmail.com'
+EMAIL_HOST_PASSWORD = 'Q2fa56re#q'
 EMAIL_PORT = 587
 
 
