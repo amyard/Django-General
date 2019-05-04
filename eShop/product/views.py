@@ -40,6 +40,8 @@ class CategoryDetailView(SideBarMixin, DetailView):
         p = Paginator(Product.objects.filter(category__slug=category_slug), self.paginate_by)
         page_number = self.request.GET.get('page', 1)
         context['products'] = p.get_page(page_number)
+
+        context['brands'] = Product.objects.filter(category__slug=category_slug).values('brand__name', 'brand__slug').distinct().order_by().annotate(count=Count('title'))
         return context
 
 
@@ -55,4 +57,27 @@ class ProductDetailView(SideBarMixin, DetailView):
         context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
         context['product'] = self.get_object
         context['cart_product_form'] = self.form
+        return context
+
+
+
+
+class BrandDetailView(SideBarMixin, ListView):
+    template_name = 'product/category-detail.html'
+    model = Brand
+    paginate_by = 8
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(BrandDetailView, self).get_context_data(*args, **kwargs)
+
+
+        category_slug = self.kwargs['category_slug']
+        brand_slug = self.kwargs['brand_slug']
+
+        p = Paginator(Product.objects.filter(category__slug=category_slug, brand__slug=brand_slug), self.paginate_by)
+        page_number = self.request.GET.get('page', 1)
+        context['products'] = p.get_page(page_number)
+
+        context['brand_view'] = True
+        context['brand_test'] = Product.objects.filter(category__slug=category_slug, brand__slug=brand_slug)[0]
         return context

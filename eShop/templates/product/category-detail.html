@@ -2,23 +2,38 @@
 
 
 {% block title %}
-    {{ category.name }} - {{ block.super }}
+    {% if brand_view %} {{ brand_test.brand }} {% else %} {{ category.name }} {% endif %} - {{ block.super }}
 {% endblock %}
 
 
 {% block content %}
 
-
         <div class="col-lg-12 mt-4">
             <div class="list-group" >
-                <a href="{% url 'product:base-view' %}" class = 'mr-2 path'>Home</a> > <a href="" class = 'ml-2 path-active'>{{ category.name }}</a>
+                {% if brand_view %}
+                    <!-- BRAND VIEW -->
+                    <a href="{% url 'product:base-view' %}" class = 'mr-2 path'>Home</a>
+                    > <a href="{{ brand_test.category.get_absolute_url }}" class = 'mr-2 ml-2 path'>{{ brand_test.category }}</a>
+                    > <a href="" class = 'ml-2 path-active'>{{ brand_test.brand }}</a>
+                {% else %}
+                    <!-- CATEGORY VIEW -->
+                    <a href="{% url 'product:base-view' %}" class = 'mr-2 path'>Home</a>
+                    > <a href="" class = 'ml-2 path-active'>{{ category.name }}</a>
+                {% endif %}
             </div>
+            <hr>
+
+            {% for brand in brands %}
+                <a href="{% url 'product:brand-detail' category_slug=category.slug brand_slug=brand.brand__slug %}" class="mr-2 brand-links"> {{ brand.brand__name }} ({{ brand.count }}) </a>
+            {% endfor %}
           <div class="row mt-3">
 
           {% for product in products %}
           <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#" class="mt-2 ml-2 mr-2"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
+            <div class="card h-100 main-card">
+              <div class="mt-2 ml-2 mr-2 inner">
+                <img class="card-img-top" src="{{ product.image.url }}" alt="">
+              </div>
               <div class="card-body">
                 <h4 class="card-title">
                   <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
