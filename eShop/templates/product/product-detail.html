@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 
 {% block title %}
     {{ product.title }} - {{ block.super }}
@@ -27,6 +27,23 @@
                 <p class="card-text">{{ product.description|safe|linebreaks }}</p>
                 <hr>
                 <h4>Цена: $ {{ product.price }}</h4>
+
+                <div class="separator clear-left user-reaction">
+                    <div class="likes-total-info">
+                        <i class="fas fa-heart fa-lg"><span id="liked"> {{ product.likes.count }}</span></i>
+                    </div>
+
+                    {% if buttons %}
+                        <button id="like" class="btn btn-danger ml-3 mb-1" >Dislike</button>
+                    {% else %}
+                        <button id="like" class="btn btn-success ml-3 mb-1" >Like</button>
+                    {% endif %}
+
+                    <input type="hidden" id="product" data-id = '{{ product.id }}'>
+                </div>
+
+
+
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
                     {% csrf_token %}
                     {{ cart_product_form }}
@@ -37,4 +54,7 @@
         </div>
     </div>
 </div>
+
+
+
 {% endblock %}

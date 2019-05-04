@@ -1,5 +1,8 @@
 from django.db import models
 from django.urls import reverse
+from model_utils.models import TimeStampedModel
+from django.conf import settings
+
 
 
 def save_image_path(instance, filename):
@@ -65,3 +68,15 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ['-id']
+
+
+class Like(TimeStampedModel):
+    product = models.ForeignKey(Product, related_name='likes', on_delete = models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='likes', on_delete = models.CASCADE)
+    ip = models.GenericIPAddressField(blank=True, null=True)
+
+    class Meta:
+        unique_together = (('product', 'user'), ('product', 'ip'))
+
+    def __str__(self):
+        return '{} from {}'.format(self.product, self.user or self.ip)

@@ -1,4 +1,4 @@
-Django==2.1.5
+django>=2.1.6
 django-crispy-forms==1.7.2
 gunicorn==19.6.0
 html5lib==1.0.1
@@ -14,3 +14,4 @@ celery==4.1.0
 braintree==3.45.0
 WeasyPrint==0.42.3
 django-tinymce4-lite==1.7.5
+django-model-utils==3.1.2

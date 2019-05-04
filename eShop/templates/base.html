@@ -90,6 +90,7 @@
   <!-- Page Content -->
   <div class="container mt-5">
 
+      <div id="messages">
     {% if messages %}
       {% for message in messages %}
           <div class = 'mt-5 alert alert-{{ message.tags }}'>
@@ -97,6 +98,7 @@
           </div>
       {% endfor %}
     {% endif %}
+          </div>
 
 
 
@@ -137,6 +139,34 @@
 
     });
   </script>
+
+<!--  LIKE TOGGLE  -->
+<script>
+
+    $(document).ready(function(){
+		$('#like').on('click', function(e) {
+			e.preventDefault()
+			var like = 'like'
+			var product_id = $('#product').attr('data-id')
+			data = {
+				product_id:product_id
+			}
+			$.ajax({
+				type:'GET',
+				url: '{% url "product:like-toggle" %}',
+				dataType: 'json',
+				data: data,
+				success: function(data){
+					$('#liked').html(data.res)
+					$('#messages').html("<div class = 'mt-5 alert alert-"+data.message_tag+"'><b>"+data.message_text+"</b></div>")
+					$('#like').replaceWith('<button id="like" class="btn btn-'+data.button[1]+' ml-3 mb-1" >'+data.button[0]+'</button>')
+				}
+			})
+		})
+	});
+
+</script>
+
 
 
 </body>
