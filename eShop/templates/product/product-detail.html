@@ -22,35 +22,82 @@
         </div>
 
         <div class="col lg-7 mt-3">
-              <div class="card-body">
-                <h3 class="card-title">{{ product.title }}</h3>
-                <p class="card-text">{{ product.description|safe|linebreaks }}</p>
-                <hr>
-                <h4>Цена: $ {{ product.price }}</h4>
 
-                <div class="separator clear-left user-reaction">
-                    <div class="likes-total-info">
-                        <i class="fas fa-heart fa-lg"><span id="liked"> {{ product.likes.count }}</span></i>
+             <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#home">Общая инфа</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#menu1">Комментарии</a>
+                </li>
+            </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <!--  ОБЩАЯ ИНФА  -->
+                <div id="home" class="container tab-pane active"><br>
+
+                  <div class="card-body">
+                    <h3 class="card-title">{{ product.title }}</h3>
+                    <p class="card-text">{{ product.description|safe|linebreaks }}</p>
+                    <hr>
+                    <h4>Цена: $ {{ product.price }}</h4>
+
+                    <div class="separator clear-left user-reaction">
+                        <div class="likes-total-info">
+                            <i class="fas fa-heart fa-lg"><span id="liked"> {{ product.likes.count }}</span></i>
+                        </div>
+
+                        {% if buttons %}
+                            <button id="like" class="btn btn-danger ml-3 mb-1" >Dislike</button>
+                        {% else %}
+                            <button id="like" class="btn btn-success ml-3 mb-1" >Like</button>
+                        {% endif %}
+
+                        <input type="hidden" id="product" data-id = '{{ product.id }}'>
                     </div>
 
-                    {% if buttons %}
-                        <button id="like" class="btn btn-danger ml-3 mb-1" >Dislike</button>
-                    {% else %}
-                        <button id="like" class="btn btn-success ml-3 mb-1" >Like</button>
-                    {% endif %}
 
-                    <input type="hidden" id="product" data-id = '{{ product.id }}'>
+
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {% csrf_token %}
+                        {{ cart_product_form }}
+                        <input type="submit" value="Добавить в корзину">
+                    </form>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span> 4.0 stars
+                  </div>
                 </div>
 
+                <!--  КОММЕНТАРИИ -->
+                <div id="menu1" class="container tab-pane fade"><br>
+                  <h2>Оставить комментарий?</h2>
+                    <div class ='comment-form w-70'>
+                        <form action = '' method = 'POST'>
+                                <input type="hidden" id="product" data-id = '{{ product.id }}'>
+                                    {% csrf_token %}
+                                    {{ comment_form|crispy }}
+                                <input type = 'submit' value = 'Add Comment' id = 'add_comment'>
+                        </form><hr>
+                    </div>
 
+                    <div class="row pb-3">
+                        <h2 class="ml-3">Комментарии:</h2>
+                        <div class="col-md-12 new-comment"></div>
+                    {% for comment in product.comments.all %}
+                        <div class="col-md-12">
+                            <h5>Comment was added at {{ comment.created }}:</h5>
+                            <p>{{ comment.text }}</p><hr>
+                        </div>
+                    {% empty %}
+                        <p class="ml-3 empty-tag">Отсутствуют комментарии к данному продукту.</p>
+                    {% endfor %}
+                    </div>
+                </div>
 
-                <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                    {% csrf_token %}
-                    {{ cart_product_form }}
-                    <input type="submit" value="Добавить в корзину">
-                </form>
-                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span> 4.0 stars
               </div>
+
+
         </div>
     </div>
 </div>

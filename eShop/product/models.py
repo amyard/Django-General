@@ -1,7 +1,10 @@
 from django.db import models
 from django.urls import reverse
-from model_utils.models import TimeStampedModel
+from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+
+from model_utils.models import TimeStampedModel
+
 
 
 
@@ -77,6 +80,23 @@ class Like(TimeStampedModel):
 
     class Meta:
         unique_together = (('product', 'user'), ('product', 'ip'))
+        ordering = ['-id']
 
     def __str__(self):
         return '{} from {}'.format(self.product, self.user or self.ip)
+
+
+
+class Comment(TimeStampedModel):
+    product = models.ForeignKey(Product, related_name='comments', on_delete = models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, related_name='comments', on_delete = models.CASCADE)
+    ip = models.GenericIPAddressField(blank=True, null=True)
+    text = models.TextField(_('Comment'), max_length = 500)
+
+    def __str__(self):
+        return 'Comment from {}'.format(self.user or self.ip)
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+        ordering = ['-id']

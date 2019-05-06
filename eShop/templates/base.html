@@ -168,6 +168,57 @@ $(document).ready(function(){
 	})
 });
 
+
+
+<!--  ADD COMMENT  -->
+
+// getCookie берем из djangoproject
+
+$(document).ready(function(){
+	function getCookie(name) {
+	    var cookieValue = null;
+	    if (document.cookie && document.cookie !== '') {
+	        var cookies = document.cookie.split(';');
+	        for (var i = 0; i < cookies.length; i++) {
+	            var cookie = jQuery.trim(cookies[i]);
+	            // Does this cookie string begin with the name we want?
+	            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+	                break;
+	            }
+	        }
+	    }
+	    return cookieValue;
+	}
+	var csrftoken = getCookie('csrftoken');
+
+	$('#add_comment').on('click', function(e){
+		e.preventDefault()
+		var product_id = $('#product').attr('data-id')
+		var comment = $('#id_text').val()
+
+		data = {
+			product_id: product_id,
+			comment: comment,
+			csrfmiddlewaretoken: csrftoken
+		}
+		$.ajax({
+			type:"POST",
+			url: '{% url "product:add_comment" %}',
+			dataType: 'json',
+			data: data,
+			success: function(data){
+			    $('.empty-tag').hide()
+				$.each(data, function(field){
+					$('.new-comment').prepend('<h5>Comment was added at ' +data[field]['created']+ ':</h5><p>' +data[field]['text']+ '</p><hr>')
+					// очищаем поле для комментариев после Добавления
+					$('#id_text').val('')
+				})
+			}
+		})
+	})
+})
+
 </script>
 
 

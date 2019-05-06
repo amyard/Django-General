@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Brand, Product, Like
+from .models import Category, Brand, Product, Like, Comment
 from tinymce.widgets import TinyMCE
 from django.db import models
 
@@ -38,4 +38,17 @@ class LikeAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Product name', {'fields':['product']}),
         ('User Info', {'fields': ['user', 'ip']})
+    ]
+
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('product', 'user', 'ip',)
+    search_fields = ['product']
+
+    fieldsets = [
+        ('Product name', {'fields': ['product']}),
+        ('User Info', {'fields': ['user', 'ip']}),
+        ('Content', {'fields': ['text']})
     ]

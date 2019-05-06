@@ -5,14 +5,13 @@ from django.db.models import Count
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from product.models import Category, Brand, Product, Like
+from product.models import Category, Brand, Product, Like, Comment
 from product.mixins import SideBarMixin
-from product.forms import LikeForm
+from product.forms import LikeForm, CommentForm
 from cart.forms import CartAddProductForm
-
-
 from product.utils import get_ip_from_request
 
+import datetime
 
 
 class BaseListView(SideBarMixin, ListView):
@@ -47,33 +46,6 @@ class CategoryDetailView(SideBarMixin, DetailView):
         return context
 
 
-
-class ProductDetailView(SideBarMixin, DetailView):
-    template_name = 'product/product-detail.html'
-    model = Product
-    context_object_name = 'product'
-    slug_url_kwarg = 'product_slug'
-    form = CartAddProductForm
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
-        context['product'] = self.get_object
-        context['cart_product_form'] = self.form
-
-        if self.request.user.username == '':
-            try:
-                ip = self.request.META.get('HTTP_X_FORWARDED_FOR').split(',')[0]
-            except:
-                ip = self.request.META.get('REMOTE_ADDR')
-            context['buttons'] = Like.objects.filter(product=self.get_object(), ip = ip)
-        else:
-            context['buttons'] = Like.objects.filter(product=self.get_object(), user = self.request.user)
-
-        return context
-
-
-
-
 class BrandDetailView(SideBarMixin, ListView):
     template_name = 'product/category-detail.html'
     model = Brand
@@ -92,6 +64,32 @@ class BrandDetailView(SideBarMixin, ListView):
 
         context['brand_view'] = True
         context['brand_test'] = Product.objects.filter(category__slug=category_slug, brand__slug=brand_slug)[0]
+        return context
+
+
+
+class ProductDetailView(SideBarMixin, DetailView):
+    template_name = 'product/product-detail.html'
+    model = Product
+    context_object_name = 'product'
+    slug_url_kwarg = 'product_slug'
+    form = CartAddProductForm
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
+        context['product'] = self.get_object()
+        context['cart_product_form'] = self.form
+        context['comment_form'] = CommentForm()
+
+        if self.request.user.username == '':
+            try:
+                ip = self.request.META.get('HTTP_X_FORWARDED_FOR').split(',')[0]
+            except:
+                ip = self.request.META.get('REMOTE_ADDR')
+            context['buttons'] = Like.objects.filter(product=self.get_object(), ip = ip)
+        else:
+            context['buttons'] = Like.objects.filter(product=self.get_object(), user = self.request.user)
+
         return context
 
 
@@ -138,3 +136,23 @@ class LikeToggleView(View):
             'button':button
         }
         return JsonResponse(data)
+
+
+
+class CreateCommentView(View):
+    def post(self, request, *args, **kwargs):
+        product_id = self.request.POST.get('product_id')
+        comment = self.request.POST.get('comment')
+
+        if comment == '':
+            return JsonResponse({}, safe=False)
+        else:
+            if self.request.user.is_authenticated:
+                new_comment = Comment.objects.create(product=Product.objects.get(id=product_id), user=request.user, text=comment)
+            else:
+                new_comment = Comment.objects.create(product=Product.objects.get(id=product_id), ip=get_ip_from_request(request), text=comment)
+
+            created = new_comment.created.strftime('%b %d, %Y, %I:%M %p').replace('PM', 'p.m.').replace('AM', 'a.m.')
+            comment = [{'text': new_comment.text,
+                        'created': created}]
+            return JsonResponse(comment, safe=False)
