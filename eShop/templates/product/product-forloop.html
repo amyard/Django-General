@@ -1,0 +1,17 @@
+<div class="col-lg-3 col-md-6 mb-4">
+    <div class="card h-100 main-card">
+        <div class="mt-2 ml-2 mr-2 inner">
+            <img class="card-img-top" src="{{ product.image.url }}" alt="">
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="{{ product.get_absolute_url }}">{{product.id}} - {{ product.title }}</a>
+            </h4>
+            <h5>${{ product.price }}</h5>
+            <p class="card-text">{{ product.description|truncatewords:10 }}</p>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{{ product.get_absolute_url }}" class="btn btn-light"><b>DETAIL</b></a>
+        </div>
+    </div>
+</div>

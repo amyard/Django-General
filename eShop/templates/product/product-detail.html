@@ -29,7 +29,7 @@
                   <a class="nav-link active" data-toggle="tab" href="#home">Общая инфа</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" href="#menu1">Комментарии</a>
+                  <a class="nav-link comments-count" data-toggle="tab" href="#menu1">Комментарии ({{ product.comments.count }})</a>
                 </li>
             </ul>
 
@@ -77,7 +77,7 @@
                                 <input type="hidden" id="product" data-id = '{{ product.id }}'>
                                     {% csrf_token %}
                                     {{ comment_form|crispy }}
-                                <input type = 'submit' value = 'Add Comment' id = 'add_comment'>
+                                <input type = 'submit' value = 'Добавить комментарий' id = 'add_comment'>
                         </form><hr>
                     </div>
 

@@ -208,11 +208,12 @@ $(document).ready(function(){
 			dataType: 'json',
 			data: data,
 			success: function(data){
-			    $('.empty-tag').hide()
-				$.each(data, function(field){
+			    $.each(data, function(field){
 					$('.new-comment').prepend('<h5>Comment was added at ' +data[field]['created']+ ':</h5><p>' +data[field]['text']+ '</p><hr>')
 					// очищаем поле для комментариев после Добавления
 					$('#id_text').val('')
+					$('.empty-tag').hide()
+			        $('.comments-count').html('Коментарии (' +data[field]['count']+ ')')
 				})
 			}
 		})

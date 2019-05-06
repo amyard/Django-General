@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.generic import ListView, DetailView, View
 from django.db.models import Count
 from django.core.paginator import Paginator
-from django.db.models import Q
+from django.db.models import Q, Case, When
 
 from product.models import Category, Brand, Product, Like, Comment
 from product.mixins import SideBarMixin
@@ -20,7 +20,6 @@ class BaseListView(SideBarMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(BaseListView, self).get_context_data(*args, **kwargs)
-        context['products'] = Product.objects.all().order_by('?')[:9]
         context['slider_products'] = Product.objects.all().order_by('?')[:5]
         return context
 
@@ -153,6 +152,8 @@ class CreateCommentView(View):
                 new_comment = Comment.objects.create(product=Product.objects.get(id=product_id), ip=get_ip_from_request(request), text=comment)
 
             created = new_comment.created.strftime('%b %d, %Y, %I:%M %p').replace('PM', 'p.m.').replace('AM', 'a.m.')
+            count = Comment.objects.filter(product=Product.objects.get(id=product_id)).count()
             comment = [{'text': new_comment.text,
-                        'created': created}]
+                        'created': created,
+                        'count': count}]
             return JsonResponse(comment, safe=False)

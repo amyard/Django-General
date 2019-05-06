@@ -15,7 +15,7 @@ class LikeForm(forms.Form):
 
 
 class CommentForm(forms.Form):
-    text = forms.CharField(label='', widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 100, 'placeholder': 'Type the comment'}))
+    text = forms.CharField(label='', widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 100, 'placeholder': 'Введите ваш комментарий'}))
 
     class Meta:
         model = Comment

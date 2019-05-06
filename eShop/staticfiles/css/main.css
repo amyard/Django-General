@@ -177,17 +177,20 @@
     color: white;
     margin-left: 1px;
 }
+
+.nav-tabs .nav-item .nav-link {
+    color: #343A40;
+}
+
 .nav-tabs .nav-item > .active {
     background-color: #343A40;
     color: white;
     border-bottom-color: #343A40;
     border-radius: 10px 10px 0px 0px;
 }
-.nav-tabs .nav-item {
-    color: #343A40;
-}
 
 hr {
     color: white;
     background-color: white;
 }
+

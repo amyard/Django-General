@@ -3,12 +3,16 @@ import os, django, random
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eShop.settings')
 django.setup()
 
-from product.models import Product, Brand, Category
+from product.models import Product, Brand, Category, Comment, Like
 from django.utils.text import slugify
 from transliterate import translit
 from django.core.files.images import ImageFile
+from django.contrib.auth import get_user_model
 from faker import Faker
 
+
+
+User = get_user_model()
 
 
 def gen_slug(s):
@@ -45,12 +49,59 @@ def create_product(N, categories, brands):
         product.save()
 
 
+def create_users(data):
+    for i in data:
+        User.objects.create(
+            username = i,
+            email = f'{i.lower()}@gmail.com',
+            password = f'{i.lower()}'
+        )
+
+
+def create_comments(N):
+    fake = Faker()
+    for _ in range(N):
+        Comment.objects.create(
+            product = Product.objects.order_by("?").first(),
+            ip = f'192.198.12.1{_}',
+            text = fake.text()
+        )
+
+def create_likes(N):
+    for _ in range(N):
+        product = Product.objects.order_by("?").first()
+        user = User.objects.order_by("?").first()
+        ip = f'192.198.12.1{_}'
+        likes = Like.objects.filter(product=product).values_list('user__id', flat=True)
+
+        like_obj = Like.objects.create(product = product)
+
+        if user.id not in likes:
+            like_obj.user = user
+        else:
+            like_obj.ip = ip
+        like_obj.save()
+
+
+
+
+
 def main():
     categories = ['Смартфоны', 'Ноутбуки', 'Комплектующие', 'Планшеты']
     brands = ['Apple', 'Dell', 'Samsung', 'Xiaomi', 'LG', 'Asus']
+    users = ['TestUser', 'NewUser', 'delme', 'ItsMe', 'Awesome']
+
     create_category_brand(categories, Category)
     create_category_brand(brands, Brand)
     create_product(30, categories, brands)
+
+    create_users(users)
+    create_comments(15)
+    create_likes(50)
+
+
+
+
 
 if __name__ == '__main__':
     main()

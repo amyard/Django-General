@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load product_tags %}
 
 {% block content %}
 
@@ -32,7 +32,7 @@
 
 
     <!-- CAROUSEL -->
-<div class="col-lg-9" xmlns:height="http://www.w3.org/1999/xhtml">
+        <div class="col-lg-9" xmlns:height="http://www.w3.org/1999/xhtml">
           <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
           <div class="carousel-inner" role="listbox">
             {% for product in slider_products %}
@@ -63,34 +63,31 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
+        </div>
+      </div>
 
 
 
         <!-- CONTENT -->
         <div class="row">
 
-          {% for product in products %}
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100 main-card">
-              <div class="mt-2 ml-2 mr-2 inner">
-                <img class="card-img-top" src="{{ product.image.url }}" alt="">
-              </div>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
-                </h4>
-                <h5>${{ product.price }}</h5>
-                <p class="card-text">{{ product.description|truncatewords:10 }}</p>
-              </div>
-              <div class="card-footer text-center">
-                  <a href="{{ product.get_absolute_url }}" class="btn btn-light"><b>DETAIL</b></a>
-              </div>
-            </div>
-          </div>
+          <h2 class="ml-3 w-100 mt-5">Новинки:</h2>
+          {% show_latest_product as new_products %}
+          {% for product in new_products %}
+                {% include 'product/product-forloop.html' %}
           {% endfor %}
 
+          <h2 class="ml-3 w-100 mt-5">Самые понравившиеся товары:</h2>
+          {% most_liked_products as liked_products %}
+          {% for product in liked_products %}
+                {% include 'product/product-forloop.html' %}
+          {% endfor %}
 
+          <h2 class="ml-3 w-100 mt-5">Самые обсуждаемые товары:</h2>
+          {% most_commented_products as commented_products %}
+          {% for product in commented_products %}
+                {% include 'product/product-forloop.html' %}
+          {% endfor %}
 
         </div>
-      </div>
 {% endblock %}
