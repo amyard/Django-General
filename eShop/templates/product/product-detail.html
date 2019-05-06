@@ -86,8 +86,21 @@
                         <div class="col-md-12 new-comment"></div>
                     {% for comment in product.comments.all %}
                         <div class="col-md-12">
-                            <h5>Comment was added at {{ comment.created }}:</h5>
-                            <p>{{ comment.text }}</p><hr>
+                            <div>
+                                <h5 class="float:left">Comment was added at {{ comment.created }}:
+
+                                    {% if user == comment.user or ip == comment.ip or user.is_superuser or user.is_staff %}
+                                    <button type="button" class="delete-comment btn btn-sm btn-danger mr-1 float-right" data-id="{% url 'product:delete-comment' comment.pk %}" title="Удалить Комментарий">
+                                      <span class="fa fa-trash"></span>
+                                    </button>
+                                    <button type="button" class="update-comment btn btn-sm btn-primary mr-1 ml-3 float-right" data-id="{% url 'product:update-comment' comment.pk %}" title="Исправить">
+                                      <span class="fa fa-edit"></span>
+                                    </button>
+                                    {% endif %}
+                                </h5>
+                            </div>
+                            <p>{{ comment.text }}</p>
+                            <hr>
                         </div>
                     {% empty %}
                         <p class="ml-3 empty-tag">Отсутствуют комментарии к данному продукту.</p>

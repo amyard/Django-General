@@ -1,17 +1,20 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, View
-from django.db.models import Count
 from django.core.paginator import Paginator
-from django.db.models import Q, Case, When
+from django.db.models import Q, Case, When, Count
 
 from product.models import Category, Brand, Product, Like, Comment
 from product.mixins import SideBarMixin
-from product.forms import LikeForm, CommentForm
+from product.forms import LikeForm, CommentForm, CommentFormModal
 from cart.forms import CartAddProductForm
 from product.utils import get_ip_from_request
 
 import datetime
+from bootstrap_modal_forms.generic import BSModalUpdateView, BSModalDeleteView
+
 
 
 class BaseListView(SideBarMixin, ListView):
@@ -53,7 +56,6 @@ class BrandDetailView(SideBarMixin, ListView):
     def get_context_data(self, *args, **kwargs):
         context = super(BrandDetailView, self).get_context_data(*args, **kwargs)
 
-
         category_slug = self.kwargs['category_slug']
         brand_slug = self.kwargs['brand_slug']
 
@@ -61,7 +63,11 @@ class BrandDetailView(SideBarMixin, ListView):
         page_number = self.request.GET.get('page', 1)
         context['products'] = p.get_page(page_number)
 
+        # исп один html_template для бренда и категорий.
+        # Если True - добвляет Brand к  Home > Сategory > Brand
         context['brand_view'] = True
+
+        # display in block title - Brand name
         context['brand_test'] = Product.objects.filter(category__slug=category_slug, brand__slug=brand_slug)[0]
         return context
 
@@ -80,14 +86,22 @@ class ProductDetailView(SideBarMixin, DetailView):
         context['cart_product_form'] = self.form
         context['comment_form'] = CommentForm()
 
+        # при загрузки страници отображает кнопки Like/Dislike в правильном цвете
         if self.request.user.username == '':
             try:
                 ip = self.request.META.get('HTTP_X_FORWARDED_FOR').split(',')[0]
             except:
                 ip = self.request.META.get('REMOTE_ADDR')
             context['buttons'] = Like.objects.filter(product=self.get_object(), ip = ip)
+
+            # отображаем кнопки Delete/Edit для комментариев - только ip
+            context['ip'] = ip
         else:
             context['buttons'] = Like.objects.filter(product=self.get_object(), user = self.request.user)
+
+            # отображаем кнопки Delete/Edit для комментариев - только user
+            context['user'] = self.request.user
+
 
         return context
 
@@ -157,3 +171,24 @@ class CreateCommentView(View):
                         'created': created,
                         'count': count}]
             return JsonResponse(comment, safe=False)
+
+
+
+class CommentDeleteView(BSModalDeleteView):
+    model = Comment
+    template_name = 'product/comment-delete.html'
+    success_message = 'Комментарий был удален.'
+
+    def get_success_url(self, **kwargs):
+        return self.request.META.get('HTTP_REFERER')
+
+
+
+class CommentUpdateView(BSModalUpdateView):
+    model = Comment
+    form_class = CommentFormModal
+    template_name = 'product/comment-update.html'
+    success_message = 'Комментарий был обновлен.'
+
+    def get_success_url(self, **kwargs):
+        return self.request.META.get('HTTP_REFERER')

@@ -85,8 +85,6 @@
 
 
 
-
-
   <!-- Page Content -->
   <div class="container mt-5">
 
@@ -131,12 +129,27 @@
 
 <script>
 
+
+<!-- HIDE MESSAGES -->
 $(function () {
+
+	// Delete comment
+    $(".delete-comment").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+    });
+
+    // Update comment
+    $(".update-comment").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+    });
+
+
     // Hide message
     $(".alert").fadeTo(5000, 500).slideUp(500, function(){
         $(".alert").slideUp(500);
     });
 });
+
 
 
 
