@@ -169,7 +169,8 @@ class CreateCommentView(View):
             count = Comment.objects.filter(product=Product.objects.get(id=product_id)).count()
             comment = [{'text': new_comment.text,
                         'created': created,
-                        'count': count}]
+                        'count': count,
+                        'ids':new_comment.id}]
             return JsonResponse(comment, safe=False)
 
 

@@ -127,7 +127,7 @@
     <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
 
 
-<script>
+<script type=text/javascript>
 
 
 <!-- HIDE MESSAGES -->
@@ -222,16 +222,41 @@ $(document).ready(function(){
 			data: data,
 			success: function(data){
 			    $.each(data, function(field){
-					$('.new-comment').prepend('<h5>Comment was added at ' +data[field]['created']+ ':</h5><p>' +data[field]['text']+ '</p><hr>')
+			        var deleteUrl = '{% url "product:delete-comment" pk=1234567 %}'.replace('1234567', data[field]['ids'])
+			        var updateUrl = '{% url "product:update-comment" pk=1234567 %}'.replace('1234567', data[field]['ids'])
+					$('.new-comment').prepend('<div><h5 class="float:left">Comment was added at ' +data[field]['created']+ ':  \
+                            <button type="button" class="delete-comment btn btn-sm btn-danger mr-1 float-right" data-id="'+deleteUrl+'" title="Удалить Комментарий"> \
+                                <span class="fa fa-trash"></span> \
+                            </button> \
+                            <button type="button" class="update-comment btn btn-sm btn-primary mr-1 ml-3 float-right" data-id="" title="Исправить"> \
+                                <span class="fa fa-edit"></span> \
+                            </h5></button> \
+                        </div> \
+					    <p>' +data[field]['text']+ '</p><hr>')
+
+					$('.update-comment').attr('data-id', updateUrl)
+
 					// очищаем поле для комментариев после Добавления
 					$('#id_text').val('')
 					$('.empty-tag').hide()
 			        $('.comments-count').html('Коментарии (' +data[field]['count']+ ')')
+
+			        // Delete comment
+                    $(".delete-comment").each(function () {
+                        $(this).modalForm({formURL: $(this).data('id')});
+                    });
+
+                    // Update comment
+                    $(".update-comment").each(function () {
+                        $(this).modalForm({formURL: $(this).data('id')});
+                    });
 				})
 			}
 		})
 	})
 })
+
+
 
 </script>
 
