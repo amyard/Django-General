@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <h4 class="card-title">
-                <a href="{{ product.get_absolute_url }}">{{product.id}} - {{ product.title }}</a>
+                <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
             </h4>
             <h5>${{ product.price }}</h5>
             <p class="card-text">{{ product.description|truncatewords:10 }}</p>

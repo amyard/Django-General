@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,19 +32,6 @@
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'product:base-view' %}">Главная <span class="sr-only">(current)</span></a>
           </li>
-
-          {% if not request.get_full_path == '/' %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Категории
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {% for cat in categories %}
-              <a class="dropdown-item" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
-              {% endfor %}
-            </div>
-          </li>
-          {% endif %}
         </ul>
         <div id="subheader">
           <div class="cart cart-header">
@@ -127,7 +114,7 @@
     <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
 
 
-<script type=text/javascript>
+<script>
 
 
 <!-- HIDE MESSAGES -->
@@ -253,10 +240,76 @@ $(document).ready(function(){
 				})
 			}
 		})
-	})
+	});
 })
 
 
+
+<!--  FILTER PRODUCTS  -->
+
+$(document).ready(function(){
+
+    $('#filter_product').on('click', function(e){
+	    e.preventDefault()
+		var cat_name = $('#cat_slug').html()
+        var brand_name = $('#brand_slug').html()
+		var price_from = $('#id_price_from').val()
+		var price_to = $('#id_price_to').val()
+
+        data = {
+            cat_name:cat_name,
+            brand_name:brand_name,
+            price_from:price_from,
+            price_to:price_to
+        }
+
+
+        // Удаляем старый список для отображение нового
+        $('.product_list').html('')
+
+        $.ajax({
+            type:'GET',
+			url: '{% url "product:filter-product" %}',
+			dataType: 'json',
+			data: data,
+            success: function(data){
+                $.each(data, function(field){
+
+                    $('#id_price_from').val('')
+                    $('#id_price_to').val('')
+
+                    for(i=0;i<=field.length;i++){
+                        text = data[field][i]["description"]
+                        image = data[field][i]["image"]
+                        title = data[field][i]["title"]
+                        price = data[field][i]["price"]
+                        var productDetail = '{% url "product:product-detail" category_slug=121212 product_slug=212121 %}'.replace('121212', data[field][i]['category__slug']).replace('212121', data[field][i]['slug'])
+
+                        $('.product_list').append(' \
+                            <div class="col-lg-3 col-md-6 mb-4"> \
+                                <div class="card h-100 main-card"> \
+                                    <div class="mt-2 ml-2 mr-2 inner"> \
+                                        <img class="card-img-top" src="http://127.0.0.1:8000/media/'+image+'" alt=""> \
+                                    </div> \
+                                    <div class="card-body"> \
+                                        <h4 class="card-title"> \
+                                            <a href="">'+title+'</a> \
+                                        </h4> \
+                                        <h5>$'+price+'</h5> \
+                                        <p class="card-text">'+text.split(" ", 10).join(' ')+' ...</p> \
+                                    </div> \
+                                    <div class="card-footer text-center"> \
+                                        <a href="'+productDetail+'" class="btn btn-light"><b>DETAIL</b></a> \
+                                    </div> \
+                                </div> \
+                            </div> \
+                        ')
+                    }
+                })
+            }
+        })
+	})
+})
 
 </script>
 

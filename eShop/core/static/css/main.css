@@ -155,11 +155,11 @@
 }
 
 .likes-total-info {
-    border: 2px solid green;
+    border: 2px solid white;
     display: inline;
     padding: 9px 15px 5px 15px;
     border-radius: 10px;
-    color: green;
+    color: white;
 }
 
 .btn-like {
@@ -171,3 +171,26 @@
     margin-top: ;
     width: 80%;
 }
+
+.tab-content > .active {
+    background-color: #343A40;
+    color: white;
+    margin-left: 1px;
+}
+
+.nav-tabs .nav-item .nav-link {
+    color: #343A40;
+}
+
+.nav-tabs .nav-item > .active {
+    background-color: #343A40;
+    color: white;
+    border-bottom-color: #343A40;
+    border-radius: 10px 10px 0px 0px;
+}
+
+hr {
+    color: white;
+    background-color: white;
+}
+

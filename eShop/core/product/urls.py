@@ -7,6 +7,7 @@ app_name = 'product'
 urlpatterns = [
     path('', BaseListView.as_view(), name = 'base-view'),
     path('like/', LikeToggleView.as_view(), name='like-toggle'),
+    path('filter-product', FilterProduct.as_view(), name='filter-product'),
 
     path('comment-delete/<int:pk>', CommentDeleteView.as_view(), name='delete-comment'),
     path('comment-update/<int:pk>', CommentUpdateView.as_view(), name='update-comment'),

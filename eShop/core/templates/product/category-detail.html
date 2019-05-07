@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 
 {% block title %}
     {% if brand_view %} {{ brand_test.brand }} {% else %} {{ category.name }} {% endif %} - {{ block.super }}
@@ -13,12 +13,12 @@
                 {% if brand_view %}
                     <!-- BRAND VIEW -->
                     <a href="{% url 'product:base-view' %}" class = 'mr-2 path'>Home</a>
-                    > <a href="{{ brand_test.category.get_absolute_url }}" class = 'mr-2 ml-2 path'>{{ brand_test.category }}</a>
-                    > <a href="" class = 'ml-2 path-active'>{{ brand_test.brand }}</a>
+                    > <a href="{{ brand_test.category.get_absolute_url }}" class = 'mr-2 ml-2 path' id="cat_slug">{{ brand_test.category }}</a>
+                    > <a href="" class = 'ml-2 path-active' id="brand_slug">{{ brand_test.brand }}</a>
                 {% else %}
                     <!-- CATEGORY VIEW -->
                     <a href="{% url 'product:base-view' %}" class = 'mr-2 path'>Home</a>
-                    > <a href="" class = 'ml-2 path-active'>{{ category.name }}</a>
+                    > <a href="" class = 'ml-2 path-active' id="cat_slug">{{ category.name }}</a>
                 {% endif %}
             </div>
             <hr>
@@ -26,13 +26,24 @@
             {% for brand in brands %}
                 <a href="{% url 'product:brand-detail' category_slug=category.slug brand_slug=brand.brand__slug %}" class="mr-2 brand-links"> {{ brand.brand__name }} ({{ brand.count }}) </a>
             {% endfor %}
-          <div class="row mt-3">
 
-          {% for product in products %}
-                {% include 'product/product-forloop.html' %}
-          {% endfor %}
-        </div>
+            <!-- ФИЛЬТРАЦИОННАЯ ФОРМА  -->
+            <form action="" method="GET" style="border: 1px solid black;" class="mt-3">
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                <input type="submit" value="Фильтровать" id="filter_product">
+            </form>
 
+            <!--  PRODUCTS LIST HERE   -->
+              <div class="row mt-3 product_list">
+                  {% for product in products %}
+                        {% include 'product/product-forloop.html' %}
+                  {% endfor %}
+              </div>
+
+
+
+            <!--   PAGGINATION  -->
             <div class="mt-3">
 			{% if products.has_other_pages %}
 

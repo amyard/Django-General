@@ -29,3 +29,8 @@ class CommentFormModal(BSModalForm):
     class Meta:
         model = Comment
         fields = ['text']
+
+
+class FilterProduct(forms.Form):
+    price_from = forms.IntegerField(label='Цена от', required=False)
+    price_to = forms.IntegerField(label='Цена до', required=False)

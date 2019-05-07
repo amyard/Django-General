@@ -7,8 +7,8 @@ from django.core.paginator import Paginator
 from django.db.models import Q, Case, When, Count
 
 from core.product.models import Category, Brand, Product, Like, Comment
-from core.product.mixins import SideBarMixin
-from core.product.forms import LikeForm, CommentForm, CommentFormModal
+from core.product.mixins import SideBarMixin, ProductBrandDetailMixin
+from core.product.forms import LikeForm, CommentForm, CommentFormModal, FilterProduct
 from core.cart.forms import CartAddProductForm
 from core.product.utils import get_ip_from_request
 
@@ -28,48 +28,58 @@ class BaseListView(SideBarMixin, ListView):
 
 
 
-class CategoryDetailView(SideBarMixin, DetailView):
-    template_name = 'product/category-detail.html'
+class CategoryDetailView(ProductBrandDetailMixin, ListView):
     model = Category
-    # context_object_name = 'category'
-    slug_url_kwarg = 'category_slug'
-    paginate_by = 8
+
+    def get_queryset(self, *args, **kwargs):
+        return Product.objects.filter(category__slug=self.kwargs['category_slug'])
 
     def get_context_data(self, *args, **kwargs):
         context = super(CategoryDetailView, self).get_context_data(*args, **kwargs)
-        context['category'] = self.get_object()
+        context['category'] = self.model.objects.get(slug=self.kwargs['category_slug'])
 
-        category_slug = self.kwargs['category_slug']
-        p = Paginator(Product.objects.filter(category__slug=category_slug), self.paginate_by)
-        page_number = self.request.GET.get('page', 1)
-        context['products'] = p.get_page(page_number)
-
-        context['brands'] = Product.objects.filter(category__slug=category_slug).values('brand__name', 'brand__slug').distinct().order_by().annotate(count=Count('title'))
+        context['brands'] = self.get_queryset().values('brand__name', 'brand__slug').distinct().order_by().annotate(count=Count('title'))
         return context
 
 
-class BrandDetailView(SideBarMixin, ListView):
-    template_name = 'product/category-detail.html'
+
+class BrandDetailView(ProductBrandDetailMixin, ListView):
     model = Brand
-    paginate_by = 8
+
+    def get_queryset(self, *args, **kwargs):
+        category_slug = self.kwargs['category_slug']
+        brand_slug = self.kwargs['brand_slug']
+        return Product.objects.filter(category__slug=category_slug, brand__slug=brand_slug)
 
     def get_context_data(self, *args, **kwargs):
         context = super(BrandDetailView, self).get_context_data(*args, **kwargs)
-
-        category_slug = self.kwargs['category_slug']
-        brand_slug = self.kwargs['brand_slug']
-
-        p = Paginator(Product.objects.filter(category__slug=category_slug, brand__slug=brand_slug), self.paginate_by)
-        page_number = self.request.GET.get('page', 1)
-        context['products'] = p.get_page(page_number)
 
         # исп один html_template для бренда и категорий.
         # Если True - добвляет Brand к  Home > Сategory > Brand
         context['brand_view'] = True
 
         # display in block title - Brand name
-        context['brand_test'] = Product.objects.filter(category__slug=category_slug, brand__slug=brand_slug)[0]
+        context['brand_test'] = Product.objects.filter(category__slug=self.kwargs['category_slug'], brand__slug=self.kwargs['brand_slug'])[0]
         return context
+
+
+class FilterProduct(View):
+    def get(self, *args, **kwargs):
+        cat_name = self.request.GET.get('cat_name')
+        brand_name = self.request.GET.get('brand_name')
+        price_from = self.request.GET.get('price_from')
+        price_to = self.request.GET.get('price_to')
+
+        qs = Product.objects.all()
+        if cat_name: qs = qs.filter(category__name=cat_name)
+        if brand_name: qs = qs.filter(brand__name=brand_name)
+        if price_from: qs = qs.filter(price__gte=price_from)
+        if price_to: qs = qs.filter(price__lte=price_to)
+
+        result = list(qs.values('title', 'description', 'image', 'price', 'slug', 'category__slug'))
+        print(result)
+        return JsonResponse({'products': result })
+
 
 
 
@@ -177,7 +187,7 @@ class CreateCommentView(View):
 
 class CommentDeleteView(BSModalDeleteView):
     model = Comment
-    template_name = 'product/comment-delete.html'
+    template_name = 'product/actions/comment-delete.html'
     success_message = 'Комментарий был удален.'
 
     def get_success_url(self, **kwargs):
@@ -188,7 +198,7 @@ class CommentDeleteView(BSModalDeleteView):
 class CommentUpdateView(BSModalUpdateView):
     model = Comment
     form_class = CommentFormModal
-    template_name = 'product/comment-update.html'
+    template_name = 'product/actions/comment-update.html'
     success_message = 'Комментарий был обновлен.'
 
     def get_success_url(self, **kwargs):
