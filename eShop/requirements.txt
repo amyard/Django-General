@@ -15,3 +15,4 @@ braintree==3.45.0
 WeasyPrint==0.42.3
 django-tinymce4-lite==1.7.5
 django-model-utils==3.1.2
+django-environ==0.4.5

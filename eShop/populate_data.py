@@ -3,7 +3,7 @@ import os, django, random
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
 
-from product.models import Product, Brand, Category, Comment, Like
+from core.product.models import Product, Brand, Category, Comment, Like
 from django.utils.text import slugify
 from transliterate import translit
 from django.core.files.images import ImageFile
