@@ -1,6 +1,6 @@
 import os, django, random
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eShop.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
 
 from product.models import Product, Brand, Category, Comment, Like
