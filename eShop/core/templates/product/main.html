@@ -69,25 +69,58 @@
 
 
         <!-- CONTENT -->
+<!--  БЕРЕМ ТЕГИ ИЗ 'product/templatetags/product_tags.py' -->
         <div class="row">
 
           <h2 class="ml-3 w-100 mt-5">Новинки:</h2>
-          {% show_latest_product as new_products %}
-          {% for product in new_products %}
-                {% include 'product/product-forloop.html' %}
-          {% endfor %}
+          <div class="owl-carousel owl-theme">
+              {% show_latest_product as new_products %}
+              {% for product in new_products %}
+                  {% include 'product/product-item/product-carousel.html' %}
+              {% endfor %}
+          </div>
 
           <h2 class="ml-3 w-100 mt-5">Самые понравившиеся товары:</h2>
-          {% most_liked_products as liked_products %}
-          {% for product in liked_products %}
-                {% include 'product/product-forloop.html' %}
-          {% endfor %}
+          <div class="owl-carousel owl-theme">
+              {% most_liked_products as liked_products %}
+              {% for product in liked_products %}
+                  {% include 'product/product-item/product-carousel.html' %}
+              {% endfor %}
+          </div>
 
           <h2 class="ml-3 w-100 mt-5">Самые обсуждаемые товары:</h2>
-          {% most_commented_products as commented_products %}
-          {% for product in commented_products %}
-                {% include 'product/product-forloop.html' %}
-          {% endfor %}
+          <div class="owl-carousel owl-theme">
+              {% most_commented_products as commented_products %}
+              {% for product in commented_products %}
+                  {% include 'product/product-item/product-carousel.html' %}
+              {% endfor %}
+          </div>
+
 
         </div>
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    // nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:4
+        }
+    }
+});
+</script>
+
+
 {% endblock %}

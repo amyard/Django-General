@@ -43,7 +43,7 @@
             <!--  PRODUCTS LIST HERE   -->
               <div class="row mt-3 product_list">
                   {% for product in products %}
-                        {% include 'product/product-forloop.html' %}
+                        {% include 'product/product-item/product-static.html' %}
                   {% empty %}
                         <p>Извините, не было найденно продуктов соответствующих Вашим требованиям.</p>
                   {% endfor %}
@@ -84,19 +84,7 @@
 
 {% block js %}
 
-
 <script>
-
-
-<!-- HIDE MESSAGES -->
-$(function () {
-
-    // Hide message
-    $(".alert").fadeTo(5000, 500).slideUp(500, function(){
-        $(".alert").slideUp(500);
-    });
-});
-
 
 <!--  FILTER PRODUCTS  -->
 

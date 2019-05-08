@@ -26,6 +26,10 @@
     box-shadow: 0px 0px 7px #343A40;
 }
 
+.inner {
+    height: 150px;
+}
+
 
 
 /* CATEGORY DETAIL */

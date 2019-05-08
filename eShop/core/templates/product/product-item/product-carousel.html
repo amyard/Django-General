@@ -1,0 +1,17 @@
+<div class="item">
+    <div class="card mt-2 mb-2 ml-2 mr-2 main-card" style="height: 500px;">
+        <div class="mt-2 ml-2 mr-2 inner">
+            <img class="card-img-top" src="{{ product.image.url }}" alt="" style="max-width:100%; height: 100%; display: block;">
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+            </h4>
+            <h5>${{ product.price }}</h5>
+            <p class="card-text">{{ product.description|truncatewords:10 }}</p>
+        </div>
+        <div class="card-footer text-center">
+            <a href="{{ product.get_absolute_url }}" class="btn btn-light"><b>DETAIL</b></a>
+        </div>
+    </div>
+</div>
