@@ -28,16 +28,24 @@
             {% endfor %}
 
             <!-- ФИЛЬТРАЦИОННАЯ ФОРМА  -->
-            <form action="" method="GET" style="border: 1px solid black;" class="mt-3">
+            <!--     ToDo - закинуть в css не забыть       -->
+            <form action="" method="GET" style="border: 1px solid #BEBEBE; padding: 1% 1%; background-color: #F5F5F5;" class="mt-3">
                   {% csrf_token %}
-                  {{ form|crispy }}
-                <input type="submit" value="Фильтровать" id="filter_product">
+                  <div class="form-row">
+                      <div class="from-group col-md-3 mb-0">{{ form.price_from|as_crispy_field }}</div>
+                      <div class="from-group col-md-3 mb-0" style="padding-top: 38px;">{{ form.price_to|as_crispy_field }}</div>
+                      <div class="from-group col-md-3 mb-0">{{ form.comments|as_crispy_field }}</div>
+                      <div class="from-group col-md-3 mb-0">{{ form.likes|as_crispy_field }}</div>
+                  </div>
+                <button type="submit" id="filter_product" class="btn btn-info"><i class="fas fa-sort-amount-down mr-2"></i>Фильтровать</button>
             </form>
 
             <!--  PRODUCTS LIST HERE   -->
               <div class="row mt-3 product_list">
                   {% for product in products %}
                         {% include 'product/product-forloop.html' %}
+                  {% empty %}
+                        <p>Извините, не было найденно продуктов соответствующих Вашим требованиям.</p>
                   {% endfor %}
               </div>
 
@@ -70,4 +78,99 @@
         </div>
 
         </div>
+{% endblock %}
+
+
+
+{% block js %}
+
+
+<script>
+
+
+<!-- HIDE MESSAGES -->
+$(function () {
+
+    // Hide message
+    $(".alert").fadeTo(5000, 500).slideUp(500, function(){
+        $(".alert").slideUp(500);
+    });
+});
+
+
+<!--  FILTER PRODUCTS  -->
+
+$(document).ready(function(){
+
+    $('#filter_product').on('click', function(e){
+	    e.preventDefault()
+		var cat_name = $('#cat_slug').html()
+        var brand_name = $('#brand_slug').html()
+		var price_from = $('#id_price_from').val()
+		var price_to = $('#id_price_to').val()
+		var comments = $('#id_comments').val()
+		var likes = $('#id_likes').val()
+
+        data = {
+            cat_name:cat_name,
+            brand_name:brand_name,
+            price_from:price_from,
+            price_to:price_to,
+            comments:comments,
+            likes:likes
+        }
+
+
+        // Удаляем старый список для отображение нового
+        $('.product_list').html('')
+
+        $.ajax({
+            type:'GET',
+			url: '{% url "product:filter-product" %}',
+			dataType: 'json',
+			data: data,
+            success: function(data){
+                $.each(data, function(field){
+
+                    // очищаем значения из формы
+                    $('#id_price_from').val('')
+                    $('#id_price_to').val('')
+                    $('#id_comments').val('')
+                    $('#id_likes').val('')
+
+                    for(i=0;i<=field.length;i++){
+                        text = data[field][i]["description"]
+                        image = data[field][i]["image"]
+                        title = data[field][i]["title"]
+                        price = data[field][i]["price"]
+                        var productDetail = '{% url "product:product-detail" category_slug=121212 product_slug=212121 %}'.replace('121212', data[field][i]['category__slug']).replace('212121', data[field][i]['slug'])
+
+                        $('.product_list').append(' \
+                            <div class="col-lg-3 col-md-6 mb-4"> \
+                                <div class="card h-100 main-card"> \
+                                    <div class="mt-2 ml-2 mr-2 inner"> \
+                                        <img class="card-img-top" src="http://127.0.0.1:8000/media/'+image+'" alt=""> \
+                                    </div> \
+                                    <div class="card-body"> \
+                                        <h4 class="card-title"> \
+                                            <a href="'+productDetail+'">'+title+'</a> \
+                                        </h4> \
+                                        <h5>$'+price+'</h5> \
+                                        <p class="card-text">'+text.split(" ", 10).join(' ')+' ...</p> \
+                                    </div> \
+                                    <div class="card-footer text-center"> \
+                                        <a href="'+productDetail+'" class="btn btn-light"><b>DETAIL</b></a> \
+                                    </div> \
+                                </div> \
+                            </div> \
+                        ')
+                    }
+                })
+            }
+        })
+	})
+})
+
+</script>
+
 {% endblock %}

@@ -36,7 +36,10 @@ class CategoryDetailView(ProductBrandDetailMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(CategoryDetailView, self).get_context_data(*args, **kwargs)
-        context['category'] = self.model.objects.get(slug=self.kwargs['category_slug'])
+        try:
+            context['category'] = self.model.objects.get(slug=self.kwargs['category_slug'])
+        except:
+            context['category'] = self.model.objects.filter(slug=self.kwargs['category_slug'])
 
         context['brands'] = self.get_queryset().values('brand__name', 'brand__slug').distinct().order_by().annotate(count=Count('title'))
         return context
@@ -69,6 +72,8 @@ class FilterProduct(View):
         brand_name = self.request.GET.get('brand_name')
         price_from = self.request.GET.get('price_from')
         price_to = self.request.GET.get('price_to')
+        comments = self.request.GET.get('comments')
+        likes = self.request.GET.get('likes')
 
         qs = Product.objects.all()
         if cat_name: qs = qs.filter(category__name=cat_name)
@@ -76,8 +81,22 @@ class FilterProduct(View):
         if price_from: qs = qs.filter(price__gte=price_from)
         if price_to: qs = qs.filter(price__lte=price_to)
 
+        # TODO - 1 это "Все продукты" - пропускаем проверку
+        # TODO - 2 это "Продукты без комментариев" / Продукты, которым не поставили "Like"
+        # TODO - 3 это "Продукты с комментариями"  / Продукты, которым поставили "Like"
+        product_with_comments = Comment.objects.values('product').annotate(count=Count('product')).order_by('-count').values_list('product', flat=True)
+        if comments=='2':
+            qs = qs.exclude(id__in=product_with_comments)
+        elif comments=='3':
+            qs = qs.filter(id__in=product_with_comments)
+
+        product_with_likes = Like.objects.values('product').annotate(count=Count('product')).order_by('-count').values_list('product', flat=True)
+        if likes == '2':
+            qs = qs.exclude(id__in=product_with_likes)
+        elif likes == '3':
+            qs = qs.filter(id__in=product_with_likes)
+
         result = list(qs.values('title', 'description', 'image', 'price', 'slug', 'category__slug'))
-        print(result)
         return JsonResponse({'products': result })
 
 

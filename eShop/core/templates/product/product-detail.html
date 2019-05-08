@@ -118,3 +118,144 @@
 
 
 {% endblock %}
+
+
+
+{% block js %}
+
+<script>
+
+
+<!-- HIDE MESSAGES -->
+$(function () {
+
+	// Delete comment
+    $(".delete-comment").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+    });
+
+    // Update comment
+    $(".update-comment").each(function () {
+        $(this).modalForm({formURL: $(this).data('id')});
+    });
+
+
+    // Hide message
+    $(".alert").fadeTo(5000, 500).slideUp(500, function(){
+        $(".alert").slideUp(500);
+    });
+});
+
+
+
+
+<!-- LIKE TOGGLE  -->
+
+$(document).ready(function(){
+    $('#like').on('click', function(e) {
+		e.preventDefault()
+		var like = 'like'
+		var product_id = $('#product').attr('data-id')
+		data = {
+			product_id:product_id
+		}
+		$.ajax({
+			type:'GET',
+			url: '{% url "product:like-toggle" %}',
+			dataType: 'json',
+			data: data,
+			success: function(data){
+				$('#liked').html(data.res)
+				$('#messages').html("<div class = 'alert alert-"+data.message_tag+"'><b>"+data.message_text+"</b></div>")
+				$('#messages').fadeTo(3000, 500).slideUp(500, function(){
+                    $("#messages").slideUp(500);
+                })
+				$('#like').html(data.button[0])
+				$('#like').removeClass().addClass("ml-3 mb-1 btn btn-"+data.button[1])
+			}
+		})
+	})
+});
+
+
+
+<!--  ADD COMMENT  -->
+
+// getCookie берем из djangoproject
+
+$(document).ready(function(){
+	function getCookie(name) {
+	    var cookieValue = null;
+	    if (document.cookie && document.cookie !== '') {
+	        var cookies = document.cookie.split(';');
+	        for (var i = 0; i < cookies.length; i++) {
+	            var cookie = jQuery.trim(cookies[i]);
+	            // Does this cookie string begin with the name we want?
+	            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+	                break;
+	            }
+	        }
+	    }
+	    return cookieValue;
+	}
+	var csrftoken = getCookie('csrftoken');
+
+	$('#add_comment').on('click', function(e){
+		e.preventDefault()
+		var product_id = $('#product').attr('data-id')
+		var comment = $('#id_text').val()
+
+		data = {
+			product_id: product_id,
+			comment: comment,
+			csrfmiddlewaretoken: csrftoken
+		}
+		$.ajax({
+			type:"POST",
+			url: '{% url "product:add_comment" %}',
+			dataType: 'json',
+			data: data,
+			success: function(data){
+			    $.each(data, function(field){
+                    for(i=0; i <= field.length; i++){
+                        var deleteUrl = '{% url "product:delete-comment" pk=1234567 %}'.replace('1234567', data[field]['ids'])
+                        var updateUrl = '{% url "product:update-comment" pk=1234567 %}'.replace('1234567', data[field]['ids'])
+                        $('.new-comment').prepend('<div><h5 class="float:left">Comment was added at ' +data[field]['created']+ ':  \
+                                <button type="button" class="delete-comment btn btn-sm btn-danger mr-1 float-right" data-id="'+deleteUrl+'" title="Удалить Комментарий"> \
+                                    <span class="fa fa-trash"></span> \
+                                </button> \
+                                <button type="button" class="update-comment btn btn-sm btn-primary mr-1 ml-3 float-right" data-id="" title="Исправить"> \
+                                    <span class="fa fa-edit"></span> \
+                                </h5></button> \
+                            </div> \
+                            <p>' +data[field]['text']+ '</p><hr>')
+
+                        $('.update-comment').attr('data-id', updateUrl)
+
+                        // очищаем поле для комментариев после Добавления
+                        $('#id_text').val('')
+                        $('.empty-tag').hide()
+                        $('.comments-count').html('Коментарии (' +data[field]['count']+ ')')
+
+                        // Delete comment
+                        $(".delete-comment").each(function () {
+                            $(this).modalForm({formURL: $(this).data('id')});
+                        });
+
+                        // Update comment
+                        $(".update-comment").each(function () {
+                            $(this).modalForm({formURL: $(this).data('id')});
+                        });
+                    }
+				})
+			}
+		})
+	});
+})
+
+
+
+</script>
+
+{% endblock %}

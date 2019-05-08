@@ -31,6 +31,25 @@ class CommentFormModal(BSModalForm):
         fields = ['text']
 
 
+
+
 class FilterProduct(forms.Form):
-    price_from = forms.IntegerField(label='Цена от', required=False)
-    price_to = forms.IntegerField(label='Цена до', required=False)
+
+    comments_choices = (
+        (1, ''),
+        (2, 'Продукты без коментариев'),
+        (3, "Продукты с комментариями")
+    )
+
+    like_choices = (
+        (1, ''),
+        (2, 'Продукты, которым не поставили "Like"'),
+        (3, 'Продукты, которым поставили "Like"')
+    )
+
+    price_from = forms.IntegerField(label='Цена', required=False,
+                                    widget=forms.NumberInput(attrs={'placeholder': 'Цена от'}))
+    price_to = forms.IntegerField(label='', required=False,
+                                  widget=forms.NumberInput(attrs={'placeholder': 'Цена до'}))
+    comments = forms.ChoiceField(label='Комментарии', choices=comments_choices, required=False, widget=forms.Select())
+    likes = forms.ChoiceField(label='Лайк', choices=like_choices, required=False, widget=forms.Select())
