@@ -17,7 +17,7 @@ class LoginForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data['username']
         if not User.objects.filter(username=username).exists():
-            raise forms.ValidationError('Пользователь с таким логином уже существует.')
+            raise forms.ValidationError('Пользователь с таким логином не существует.')
         return username
 
 

@@ -218,7 +218,6 @@ $(document).ready(function(){
 			data: data,
 			success: function(data){
 			    $.each(data, function(field){
-                    for(i=0; i <= field.length; i++){
                         var deleteUrl = '{% url "product:delete-comment" pk=1234567 %}'.replace('1234567', data[field]['ids'])
                         var updateUrl = '{% url "product:update-comment" pk=1234567 %}'.replace('1234567', data[field]['ids'])
                         $('.new-comment').prepend('<div><h5 class="float:left">Comment was added at ' +data[field]['created']+ ':  \
@@ -247,7 +246,6 @@ $(document).ready(function(){
                         $(".update-comment").each(function () {
                             $(this).modalForm({formURL: $(this).data('id')});
                         });
-                    }
 				})
 			}
 		})

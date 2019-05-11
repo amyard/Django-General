@@ -143,22 +143,21 @@ class LikeToggleView(View):
         product = Product.objects.get(id=product_id)
 
         if self.request.user.is_anonymous:
-            likes = Like.objects.filter(product=product).values_list('ip', flat=True)
-            ip = get_ip_from_request(request)
-            if ip not in likes:
-                Like.objects.create(product=product, ip=ip)
+            if not Like.objects.filter(product=product, ip=get_ip_from_request(request)).exists():
+                Like.objects.create(product=product, ip=get_ip_from_request(request))
+                # для JQuery ниже
                 message_tag='success'
                 message_text='Вы посталиви Лайк продукту.'
                 button = ['Dislike', 'danger']
             else:
-                Like.objects.filter(product=product, ip=ip).delete()
+                Like.objects.filter(product=product, ip=get_ip_from_request(request)).delete()
+                # для JQuery ниже
                 message_tag = 'danger'
                 message_text = 'Вам не понравился продукт.'
                 button = ['Like', 'success']
 
         elif self.request.user.is_authenticated:
-            likes = Like.objects.filter(product=product).values_list('user', flat=True)
-            if self.request.user.id not in likes:
+            if not Like.objects.filter(product=product, user = self.request.user):
                 Like.objects.create(product=product, user=self.request.user)
                 message_tag = 'success'
                 message_text = 'Вы посталиви Лайк продукту.'
