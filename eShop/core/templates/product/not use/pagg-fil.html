@@ -1,0 +1,27 @@
+
+{% if 'price_from' in request.get_full_path %}
+        <div class="mt-3">
+			{% if products.has_other_pages %}
+
+
+				{% if products.has_previous %}
+					<a href="?page=1" class = 'btn btn-outline-dark mb-4'>First</a>
+					<a href="?page={{ products.previous_page_number }}" class = 'btn btn-outline-dark mb-4'>Previous</a>
+				{% endif %}
+
+				{% for num in products.paginator.page_range %}
+					{% if products.number == num %}
+						<a href="{{ request.get_full_path }}&page={{ num }}" class = 'btn btn-dark mb-4'>{{ num }}</a>
+					{% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+						<a href="{{ request.get_full_path }}&page={{ num }}" class = 'btn btn-ouline-dark mb-4'>{{ num }}</a>
+					{% endif %}
+				{% endfor %}
+
+				{% if products.has_next %}
+					<a href="{{ request.get_full_path }}&page={{ products.next_page_number }}" class = 'btn btn-outline-dark mb-4'>Next</a>
+					<a href="{{ request.get_full_path }}&page={{ products.paginator.num_pages }}" class = 'btn btn-outline-dark mb-4'>Last</a>
+				{% endif %}
+
+			{% endif %}
+            </div>
+{% endif %}

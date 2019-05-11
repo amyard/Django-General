@@ -16,11 +16,13 @@ class SideBarMixin(MultipleObjectMixin):
         return context
 
 
-
+#  Не учитывает в фильтрации Бренды. Сбрасывает настройки фильтрации
+# TODO - созранять значения фильтрации в сессии и передавать во вьюху бренд
+# TODO -  забить на геммор с сессиями. закинуть бренды как поле для фильтрации.
 class ProductBrandDetailMixin(MultipleObjectMixin):
     template_name = 'product/category-detail.html'
     model = None
-    paginate_by = 8
+    paginate_by = 2
     form_class = FilterProduct
 
 
@@ -65,5 +67,14 @@ class ProductBrandDetailMixin(MultipleObjectMixin):
         page_number = self.request.GET.get('page', 1)
         context['products'] = p.get_page(page_number)
 
-        context['form'] = self.form_class
+        context['form'] = self.form_class(
+            initial={'price_from': self.request.GET.get('price_from'), 'price_to': self.request.GET.get('price_to'),
+                     'comments': self.request.GET.get('comments'), 'likes': self.request.GET.get('likes')})
+
+        # можно исп {% if 'price_from' in request.get_full_path %} заместь всего ниже.
+        # исп файл pagg-fill из папки 'not use'
+        # минус - при нажатии повторно на одну и ту же страницу - дублирует page=<номер страницы> в url
+        if self.request.GET.get('price_from') or self.request.GET.get('price_to') or self.request.GET.get('comments') or self.request.GET.get('likes'):
+            context['filter_cond'] = f"?price_from={self.request.GET.get('price_from')}&price_to={self.request.GET.get('price_to')}&comments={self.request.GET.get('comments')}&likes={self.request.GET.get('likes')}"
+
         return context

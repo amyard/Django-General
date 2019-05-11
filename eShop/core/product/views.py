@@ -33,12 +33,7 @@ class CategoryDetailView(ProductBrandDetailMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(CategoryDetailView, self).get_context_data(*args, **kwargs)
-        try:
-            context['category'] = self.model.objects.get(slug=self.kwargs['category_slug'])
-        except:
-            context['category'] = self.model.objects.filter(slug=self.kwargs['category_slug'])
-
-        context['form'] = FilterProduct(initial={'price_from':self.request.GET.get('price_from'), 'price_to':self.request.GET.get('price_to'), 'comments':self.request.GET.get('comments'), 'likes':self.request.GET.get('likes')})
+        context['category'] = self.model.objects.get(slug=self.kwargs['category_slug'])
         context['brands'] = self.get_queryset().values('brand__name', 'brand__slug').distinct().order_by().annotate(count=Count('title'))
         return context
 
@@ -57,6 +52,8 @@ class BrandDetailView(ProductBrandDetailMixin, ListView):
         # display in block title - Brand name
         context['brand_test'] = Product.objects.filter(category__slug=self.kwargs['category_slug'], brand__slug=self.kwargs['brand_slug'])[0]
         return context
+
+
 
 class ProductDetailView(SideBarMixin, DetailView):
     template_name = 'product/product-detail.html'
