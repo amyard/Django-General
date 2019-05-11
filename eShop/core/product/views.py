@@ -31,9 +31,6 @@ class BaseListView(SideBarMixin, ListView):
 class CategoryDetailView(ProductBrandDetailMixin, ListView):
     model = Category
 
-    def get_queryset(self, *args, **kwargs):
-        return Product.objects.filter(category__slug=self.kwargs['category_slug'])
-
     def get_context_data(self, *args, **kwargs):
         context = super(CategoryDetailView, self).get_context_data(*args, **kwargs)
         try:
@@ -41,6 +38,7 @@ class CategoryDetailView(ProductBrandDetailMixin, ListView):
         except:
             context['category'] = self.model.objects.filter(slug=self.kwargs['category_slug'])
 
+        context['form'] = FilterProduct(initial={'price_from':self.request.GET.get('price_from'), 'price_to':self.request.GET.get('price_to'), 'comments':self.request.GET.get('comments'), 'likes':self.request.GET.get('likes')})
         context['brands'] = self.get_queryset().values('brand__name', 'brand__slug').distinct().order_by().annotate(count=Count('title'))
         return context
 
@@ -48,11 +46,6 @@ class CategoryDetailView(ProductBrandDetailMixin, ListView):
 
 class BrandDetailView(ProductBrandDetailMixin, ListView):
     model = Brand
-
-    def get_queryset(self, *args, **kwargs):
-        category_slug = self.kwargs['category_slug']
-        brand_slug = self.kwargs['brand_slug']
-        return Product.objects.filter(category__slug=category_slug, brand__slug=brand_slug)
 
     def get_context_data(self, *args, **kwargs):
         context = super(BrandDetailView, self).get_context_data(*args, **kwargs)
@@ -64,43 +57,6 @@ class BrandDetailView(ProductBrandDetailMixin, ListView):
         # display in block title - Brand name
         context['brand_test'] = Product.objects.filter(category__slug=self.kwargs['category_slug'], brand__slug=self.kwargs['brand_slug'])[0]
         return context
-
-
-class FilterProduct(View):
-    def get(self, *args, **kwargs):
-        cat_name = self.request.GET.get('cat_name')
-        brand_name = self.request.GET.get('brand_name')
-        price_from = self.request.GET.get('price_from')
-        price_to = self.request.GET.get('price_to')
-        comments = self.request.GET.get('comments')
-        likes = self.request.GET.get('likes')
-
-        qs = Product.objects.all()
-        if cat_name: qs = qs.filter(category__name=cat_name)
-        if brand_name: qs = qs.filter(brand__name=brand_name)
-        if price_from: qs = qs.filter(price__gte=price_from)
-        if price_to: qs = qs.filter(price__lte=price_to)
-
-        # TODO - 1 это "Все продукты" - пропускаем проверку
-        # TODO - 2 это "Продукты без комментариев" / Продукты, которым не поставили "Like"
-        # TODO - 3 это "Продукты с комментариями"  / Продукты, которым поставили "Like"
-        product_with_comments = Comment.objects.values('product').annotate(count=Count('product')).order_by('-count').values_list('product', flat=True)
-        if comments=='2':
-            qs = qs.exclude(id__in=product_with_comments)
-        elif comments=='3':
-            qs = qs.filter(id__in=product_with_comments)
-
-        product_with_likes = Like.objects.values('product').annotate(count=Count('product')).order_by('-count').values_list('product', flat=True)
-        if likes == '2':
-            qs = qs.exclude(id__in=product_with_likes)
-        elif likes == '3':
-            qs = qs.filter(id__in=product_with_likes)
-
-        result = list(qs.values('title', 'description', 'image', 'price', 'slug', 'category__slug'))
-        return JsonResponse({'products': result })
-
-
-
 
 class ProductDetailView(SideBarMixin, DetailView):
     template_name = 'product/product-detail.html'
@@ -157,7 +113,7 @@ class LikeToggleView(View):
                 button = ['Like', 'success']
 
         elif self.request.user.is_authenticated:
-            if not Like.objects.filter(product=product, user = self.request.user):
+            if not Like.objects.filter(product=product, user = self.request.user).exists():
                 Like.objects.create(product=product, user=self.request.user)
                 message_tag = 'success'
                 message_text = 'Вы посталиви Лайк продукту.'
