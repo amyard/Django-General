@@ -15,7 +15,6 @@ class OrderCreateForm(forms.ModelForm):\
 
 
     def __init__(self, *args, **kwargs):
-        kwargs.setdefault('label_suffix', '::')
         super(OrderCreateForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
