@@ -1,6 +1,5 @@
 from django.views.generic.list import MultipleObjectMixin
-from tasks.models import Task
-from projects.models import Project
+from engine.projects.models import Project
 from django.db.models import Count, Q
 from datetime import date
 

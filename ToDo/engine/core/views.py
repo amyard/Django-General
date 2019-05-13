@@ -1,10 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
-from django.db.models import Count, Q
-from .mixins import MainPageListMixin
+from engine.core.mixins import MainPageListMixin
 
-from projects.models import Project
-from tasks.models import Task
+from engine.projects.models import Project
+from engine.tasks.models import Task
 
 from datetime import date, timedelta
 

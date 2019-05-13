@@ -5,7 +5,7 @@ from django.views import View
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib import messages
 
-from .forms import LoginForm, RegistrationForm
+from engine.users.forms import LoginForm, RegistrationForm
 
 
 
@@ -55,8 +55,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 
-from .forms import RegistrationForm
-from .tokens import account_activation_token
+from engine.users.forms import RegistrationForm
+from engine.users.tokens import account_activation_token
 
 
 

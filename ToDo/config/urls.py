@@ -21,11 +21,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(('core.urls', 'core'))),
+    path('', include(('engine.core.urls', 'core'))),
 
-    path('projects/', include(('projects.urls', 'projects'))),
-    path('tasks/', include(('tasks.urls', 'tasks'))),
-    path('accounts/', include(('users.urls', 'users'))),
+    path('projects/', include(('engine.projects.urls', 'projects'))),
+    path('tasks/', include(('engine.tasks.urls', 'tasks'))),
+    path('accounts/', include(('engine.users.urls', 'users'))),
 
     path('accounts/', include('allauth.urls')),
 ]

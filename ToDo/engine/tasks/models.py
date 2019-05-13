@@ -1,5 +1,5 @@
 from django.db import models
-from projects.models import Project
+from engine.projects.models import Project
 from django.utils import timezone
 
 

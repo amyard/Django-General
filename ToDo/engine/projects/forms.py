@@ -1,4 +1,4 @@
-from .models import Project
+from engine.projects.models import Project
 from bootstrap_modal_forms.forms import BSModalForm
 from django import forms
 

@@ -1,18 +1,14 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
 from django.views.generic import ListView
-from core.mixins import MainPageListMixin
+from engine.core.mixins import MainPageListMixin
 
 
-from .models import Project
-from .forms import ProjectForm, ProjectUpdateForm
-from tasks.models import Task
+from engine.projects.models import Project
+from engine.projects.forms import ProjectForm, ProjectUpdateForm
+from engine.tasks.models import Task
 
 from django.urls import reverse_lazy
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalDeleteView, BSModalUpdateView
 from datetime import date
-from django.db.models import Q
-
 
 
 class ProjectCreateView(BSModalCreateView):

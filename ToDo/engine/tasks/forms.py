@@ -1,5 +1,5 @@
-from .models import Task
-from projects.models import Project
+from engine.tasks.models import Task
+from engine.projects.models import Project
 
 from bootstrap_modal_forms.forms import BSModalForm
 from django import forms

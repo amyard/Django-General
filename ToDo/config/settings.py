@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))+'/engine'
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,21 +30,26 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
-INSTALLED_APPS = [
-    'core',
-    'projects',
-    'tasks',
-    'crispy_forms',
-    'bootstrap_modal_forms',
-    'widget_tweaks',
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
 
-    'users.apps.UsersConfig',
+LOCAL_APPS = [
+    'engine.core.apps.CoreConfig',
+    'engine.projects.apps.ProjectsConfig',
+    'engine.tasks.apps.TasksConfig',
+    'engine.users.apps.UsersConfig',
+]
+
+THIRD_PARTY_APPS = [
+    'crispy_forms',
+    'bootstrap_modal_forms',
+    'widget_tweaks',
 
     'django.contrib.sites',
     #  Social login
@@ -57,6 +62,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.linkedin_oauth2',
 ]
 
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -67,7 +75,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ToDo.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -88,7 +96,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ToDo.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database

@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views import View
-
-from .models import Task
-from .forms import TaskForm, TaskUpdateForm
-
 from django.urls import reverse_lazy
+
+from engine.tasks.models import Task
+from engine.tasks.forms import TaskForm, TaskUpdateForm
+
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalDeleteView, BSModalUpdateView, BSModalReadView
 
 
