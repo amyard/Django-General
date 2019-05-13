@@ -2,92 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3585fcc6-2509-404c-821a-787f8b5985ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/users/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDo/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDo/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDo/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDo/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/mixins.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/mixins.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates/core/actions/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/templates/core/actions/content.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates/core/actions/here-scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/templates/core/actions/here-scripts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates/core/actions/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/templates/core/actions/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates/core/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/templates/core/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates/core/sevendays.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/templates/core/sevendays.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/templates/projects/actions/category-create.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/templates/projects/actions/category-create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/templates/projects/actions/category-delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/templates/projects/actions/category-delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/templates/projects/actions/category-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/templates/projects/actions/category-update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/templates/projects/detail-projects.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/templates/projects/detail-projects.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/assets/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/js/jquery-3.2.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/assets/js/jquery-3.2.1.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/js/popper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/assets/js/popper.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.bootstrap.modal.forms.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/js/jquery.bootstrap.modal.forms.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/jquery.bootstrap.modal.forms.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/js/jquery.bootstrap.modal.forms.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/migrations/0002_task_description.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/migrations/0002_task_description.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/migrations/0003_auto_20190412_1648.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/migrations/0003_auto_20190412_1648.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/migrations/0004_auto_20190412_1901.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/migrations/0004_auto_20190412_1901.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/migrations/0005_auto_20190412_1903.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/migrations/0005_auto_20190412_1903.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/migrations/0006_auto_20190412_1931.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/migrations/0006_auto_20190412_1931.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/migrations/0007_auto_20190412_1935.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/migrations/0007_auto_20190412_1935.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/migrations/0008_auto_20190412_1948.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/migrations/0008_auto_20190412_1948.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/templates/tasks/actions/task-create.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/templates/tasks/actions/task-create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/templates/tasks/actions/task-delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/templates/tasks/actions/task-delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/templates/tasks/actions/task-read.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/templates/tasks/actions/task-read.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/templates/tasks/actions/task-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/templates/tasks/actions/task-update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tasks/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/tasks/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/account_activation_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/account_activation_email.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/confirm_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/confirm_email.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/confirm_email_invalid.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/confirm_email_invalid.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/confirm_email_valid.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/confirm_email_valid.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/password_reset.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/password_reset.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/password_reset_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/password_reset_complete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/password_reset_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/password_reset_confirm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/password_reset_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/password_reset_done.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/password_reset_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/password_reset_email.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/password_reset_subject.txt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/password_reset_subject.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/actions/user-account-delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/actions/user-account-delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/templates/users/registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/tokens.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/engine/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/core/templates/core/actions/here-scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/core/templates/core/actions/here-scripts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/projects/templates/projects/actions/category-create.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/templates/projects/actions/category-create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/projects/templates/projects/actions/category-update.html" beforeDir="false" afterPath="$PROJECT_DIR$/engine/projects/templates/projects/actions/category-update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/engine/static/css/main.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,22 +15,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/settings.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/engine/projects/templates/projects/actions/category-create.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+            <state relative-caret-position="454">
+              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="72" selection-end-column="9" />
+              <folding>
+                <element signature="e#304#311#1" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/urls.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/engine/projects/templates/projects/actions/category-update.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+            <state relative-caret-position="379">
+              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
               <folding>
-                <element signature="e#629#661#0" expanded="true" />
+                <element signature="e#304#311#1" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,10 +63,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/ToDo/settings.py" />
-        <option value="$PROJECT_DIR$/tasks/admin.py" />
-        <option value="$PROJECT_DIR$/projects/templates/projects/actions/category-update.html" />
         <option value="$PROJECT_DIR$/ToDo/urls.py" />
         <option value="$PROJECT_DIR$/projects/templates/projects/actions/category-create.html" />
         <option value="$PROJECT_DIR$/tasks/templates/tasks/actions/task-create.html" />
@@ -193,6 +110,10 @@
         <option value="$PROJECT_DIR$/engine/tasks/apps.py" />
         <option value="$PROJECT_DIR$/engine/users/apps.py" />
         <option value="$PROJECT_DIR$/config/urls.py" />
+        <option value="$PROJECT_DIR$/engine/static/css/main.css" />
+        <option value="$PROJECT_DIR$/engine/core/templates/core/actions/here-scripts.html" />
+        <option value="$PROJECT_DIR$/engine/projects/templates/projects/actions/category-create.html" />
+        <option value="$PROJECT_DIR$/engine/projects/templates/projects/actions/category-update.html" />
       </list>
     </option>
   </component>
@@ -218,18 +139,37 @@
             <path>
               <item name="ToDo" type="b2602c69:ProjectViewProjectNode" />
               <item name="ToDo" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ToDo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ToDo" type="462c0819:PsiDirectoryNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ToDo" type="b2602c69:ProjectViewProjectNode" />
               <item name="ToDo" type="462c0819:PsiDirectoryNode" />
               <item name="engine" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="projects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ToDo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ToDo" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="projects" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ToDo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ToDo" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="projects" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="projects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ToDo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ToDo" type="462c0819:PsiDirectoryNode" />
+              <item name="engine" type="462c0819:PsiDirectoryNode" />
+              <item name="projects" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="projects" type="462c0819:PsiDirectoryNode" />
+              <item name="actions" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -277,11 +217,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.2284153" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2284153" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.27213824" />
+      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.27213824" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="2" weight="0.32937366" />
       <window_info anchor="bottom" id="Message" order="3" />
@@ -308,26 +249,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/engine/projects/templates/projects/actions/category-update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
-          <folding>
-            <element signature="e#304#311#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/projects/templates/projects/actions/category-create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
-          <folding>
-            <element signature="e#304#311#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/engine/tasks/templates/tasks/actions/task-update.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -380,27 +301,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tasks/templates/tasks/actions/task-delete-all.html" />
-    <entry file="file://$PROJECT_DIR$/engine/core/templates/core/actions/here-scripts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/engine/static/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="106" column="24" selection-start-line="106" selection-start-column="24" selection-end-line="106" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../djangoEnv/lib/python3.6/site-packages/django/db/backends/sqlite3/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -433,28 +333,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/engine/projects/templates/projects/detail-projects.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#article#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#article#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="46" column="12" lean-forward="true" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -675,6 +557,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -689,6 +578,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="92" column="21" lean-forward="true" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/projects/templates/projects/detail-projects.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#article#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#article#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/core/templates/core/actions/here-scripts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/static/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="167" column="16" lean-forward="true" selection-start-line="167" selection-start-column="16" selection-end-line="167" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/projects/templates/projects/actions/category-create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="72" selection-end-column="9" />
+          <folding>
+            <element signature="e#304#311#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/engine/projects/templates/projects/actions/category-update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="e#304#311#1" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
